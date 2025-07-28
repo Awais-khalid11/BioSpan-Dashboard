@@ -2,8 +2,7 @@ import { ReactSVG } from "react-svg";
 
 const Navbar = () => {
   return (
-    <div className=" mt-4 mr-4 ml-2 h-20 bg-white rounded-r-2xl px-6 flex justify-between items-center shadow-lg">
-      {/* Left Section */}
+    <div className="  h-25  rounded-[20px] bg-white m-2.5  px-6 flex justify-between items-center border border-[#00000012]" >
       <div className="flex flex-col">
         <h1 className="text-2xl font-semibold text-black hidden md:block">
           👋 Hey! John Doe
@@ -13,7 +12,6 @@ const Navbar = () => {
         </p>
       </div>
 
-      {/* Right Section */}
       <div className="flex items-center gap-4 ml-auto">
         <div className="hidden sm:block w-64">
           <input

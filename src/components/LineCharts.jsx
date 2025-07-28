@@ -47,7 +47,7 @@ const LineCharts = () => {
   const currentChartData = allChartData[activeChartTab] || [];
 
   return (
-    <div style={{ width: '100%', background: 'white' , filter: 'drop-shadow(0 0px 15px rgba(0,0,0,0.05))'  }} className="p-5 rounded-[12px]  bg-white ">
+    <div style={{ width: '100%', background: 'white' , filter: 'drop-shadow(0 0px 15px rgba(0,0,0,0.05))'  }} className=" outline-none focus:outline-none p-5 rounded-[12px]  bg-white ">
       <div className="flex flex-wrap gap-3 mb-4 justify-between items-center">
         <div className="text-[25px] font-bold text-black mb-4 sm:mb-0">
           <h1 className='leading-[1]'>Summary Overview</h1>

@@ -1,12 +1,11 @@
 import React from 'react'
 
-const Settings = () => {
+const Supplements = () => {
   return (
     <div>
-        <h1>hello</h1>
       
     </div>
   )
 }
 
-export default Settings
+export default Supplements

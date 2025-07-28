@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Settings = () => {
+const BioScore = () => {
   return (
     <div>
         <h1>hello</h1>
@@ -9,4 +9,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default BioScore
