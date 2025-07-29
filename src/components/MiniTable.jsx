@@ -56,7 +56,7 @@ const MiniTable = () => {
         </thead>
         <tbody>
           {tableData.map((row, index) => (
-            <tr key={index} className="border-b border-gray-100">
+            <tr key={index} className="border-b border-gray-100 even:bg-[#F7F7F7]">
               <td className="p-4 text-sm text-gray-900">{row.date}</td>
               <td className="p-4 text-sm text-gray-700">{row.event}</td>
               <td className="p-4 text-sm text-gray-700">{row.details}</td>

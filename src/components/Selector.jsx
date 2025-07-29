@@ -2,17 +2,17 @@ import React from 'react';
 
 const Selector = ({ label, options, value, onChange }) => {
   return (
-    <div className="mb-4 relative">
+    <div className=" relative">
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          {label}
+         <h3 className="text-[#323232] text-[15px] leading-[1] tracking-[1.6%]  font-semibold ">  {label}</h3>
         </label>
       )}
       
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-[#2525251A] rounded-[12px] px-3.5 py-4 pr-12 text-[16px] appearance-none"
+        className="w-full border mt-3 border-[#2525251A] rounded-[12px] px-3.5 py-[15px] pr-12 text-[16px] appearance-none"
       >
         {options.map((opt, index) => (
           <option key={index} value={opt.value}>

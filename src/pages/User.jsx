@@ -126,7 +126,10 @@ const User = () => {
     const actionOptions = [
       {
         label: (
-          <button onClick={() => navigate(`/user-detail/${userId}`)}>
+          <button
+            className="cursor-pointer w-full"
+            onClick={() => navigate(`/user-detail/${userId}`)}
+          >
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4 text-gray-600" />
@@ -249,7 +252,6 @@ const User = () => {
         plans: "Premium",
         status: "Active",
       },
-      
     },
     {
       id: "5",
@@ -268,13 +270,16 @@ const User = () => {
         plans: "Premium",
         status: "Active",
       },
-      
     },
   ];
 
   return (
     <div>
-      <BasicTable title="Users Management" columns={columns} data={data} />
+      <BasicTable title="Users Management" columns={columns} data={data} 
+      showPagination={true} 
+        showDatePicker={false} 
+
+         />
     </div>
   );
 };

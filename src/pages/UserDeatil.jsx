@@ -14,6 +14,7 @@ import MiniTable from "../components/MiniTable";
 import Selector from "../components/Selector";
 import Cards from "../components/Cards";
 import Aim from "../../public/assets/icons/Aim.svg";
+import Avatar from "../../public/assets/images/Avatar.png"
 
 const CardsData = [
   {
@@ -48,15 +49,17 @@ const UserDetail = () => {
     { label: "Better Sleep", value: "sleep" },
   ];
 
-  const { id } = useParams();
+const { id } = useParams();
   const navigate = useNavigate();
+
+  
   return (
     <div className="">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <button
-              className="p-2 hover:bg-gray-100 rounded-lg"
+              className="p-2 hover:bg-gray-100 rounded-lg cursor-pointer"
               onClick={() => navigate(-1)}
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -80,7 +83,7 @@ const UserDetail = () => {
               <div>
                 <div className="flex items-start gap-4 mb-6">
                   <img
-                    src="https://images.unsplash.com/photo-1494790108755-2616b9c9b1cd?w=60&h=60&fit=crop&crop=face"
+                    src={Avatar}
                     alt="Lydia Press"
                     className="w-12 h-12 rounded-full object-cover"
                   />

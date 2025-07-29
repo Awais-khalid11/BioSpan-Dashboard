@@ -9,6 +9,7 @@ import AICoach from "../pages/AICoach";
 import Protocols from "../pages/Protocols";
 import Settings from "../pages/Settings"
 import UserDetail from "../pages/UserDeatil";
+import SupplementModal from "../pages/SupplementModal";
 
 const Routers = () => {
   return (
@@ -24,6 +25,7 @@ const Routers = () => {
         <Route path = "/protocols" element={<Protocols/>}/>
         <Route path = "/settings" element={<Settings/>}/>
 <Route path="/user-detail/:id" element={<UserDetail />} />
+<Route path="/supplement-modal" element={<SupplementModal />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
