@@ -1,6 +1,6 @@
 import  { useState } from "react";
 import { TbEdit } from "react-icons/tb";
-import BasicTable from "../components/BasicTable";
+import BasicTable from "../../components/BasicTable";
 import { X } from "lucide-react"; // or wherever your X icon comes from
 
 
@@ -23,7 +23,7 @@ const renderStatus = (status) => {
   );
 };
 
-const AiCoach = () => {
+const Protocols = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
 
@@ -181,4 +181,4 @@ const AiCoach = () => {
   );
 };
 
-export default AiCoach;
+export default Protocols;

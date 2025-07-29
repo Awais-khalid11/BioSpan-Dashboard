@@ -6,10 +6,11 @@ import Dashboard from "../pages/Dashboard";
 import Supplements from "../pages/Supplements";
 import BioScore from "../pages/BioScore";
 import AICoach from "../pages/AICoach";
-import Protocols from "../pages/Protocols";
+import Protocols from "../pages/protocols/Protocols";
 import Settings from "../pages/Settings"
 import UserDetail from "../pages/UserDeatil";
 import SupplementModal from "../pages/SupplementModal";
+import EditProtocol from "../pages/protocols/components/EditProtocol";
 
 const Routers = () => {
   return (
@@ -23,6 +24,8 @@ const Routers = () => {
         <Route path = "/bioScore" element={<BioScore/>}/>
         <Route path = "/aicoach" element={<AICoach/>}/>
         <Route path = "/protocols" element={<Protocols/>}/>
+                <Route path = "/edit-protocol" element={<EditProtocol/>}/>
+
         <Route path = "/settings" element={<Settings/>}/>
 <Route path="/user-detail/:id" element={<UserDetail />} />
 <Route path="/supplement-modal" element={<SupplementModal />} />

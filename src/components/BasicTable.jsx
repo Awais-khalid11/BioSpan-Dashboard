@@ -33,11 +33,12 @@ const BasicTable = ({
     console.log("Selected Filter:", option);
   };
 
-  const filteredData = data.filter((row) =>
-    Object.values(row.raw || {}).some((value) =>
-      String(value).toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+const filteredData = data.filter((row) =>
+  Object.values(row).some((value) =>
+    String(value).toLowerCase().includes(searchTerm.toLowerCase())
+  )
+);
+
 
   const totalItems = filteredData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -179,7 +180,7 @@ const BasicTable = ({
         </table>
 
         {showExportBtn && (
-          <button className="w-full mt-4 bg-[#072723] flex justify-center items-center gap-2.5 rounded-[12px] text-white text-center py-3 px-4">
+          <button className="w-full mt-4 bg-[#072723] flex justify-center items-center gap-2.5 rounded-[12px] text-white text-center py-2.5 px-4">
             <CiInboxIn />
             Export CSV
           </button>
