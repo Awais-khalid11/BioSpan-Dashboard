@@ -17,6 +17,7 @@ const BasicTable = ({
   filterButtonText = "Filters",
   itemsPerPage = 10,
   showExportBtn = false,
+   customButton,
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -107,43 +108,39 @@ const filteredData = data.filter((row) =>
           <h1 className="leading-[1]">{title}</h1>
         </div>
 
-        {(showSearch || showFilter) && (
-          <div className="flex  items-center gap-2.5">
-            {showSearch && (
-              <div className="relative w-[429px] bg-white">
-                <input
-                  type="search"
-                  name="tablesearch"
-                  placeholder="Search"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  className="w-full rounded-[8px] border border-[#2525251A] px-3.5 py-2.5 pl-10 leading-[1]"
-                />
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
-              </div>
-            )}
-            <div className="bg-white">
-              {showFilter && (
-                <DropDownButton
-                  btnText={filterButtonText}
-                  btnIcon={<IoFilterOutline className="text-lime-400" />}
-                  options={filterOptions}
-                  onSelect={handleFilterChange}
-                />
-              )}
-            </div>
-            {showDatePicker && (
-              <div className="flex items-center gap-2 bg-white border border-[#E0E0E0] rounded  w-[18%] input:text-center justify-center py-2">
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
-                  className="text-sm border-none focus:ring-0 outline-none"
-                  dateFormat="MMM dd, yyyy"
-                />
-              </div>
-            )}
-          </div>
-        )}
+       {(showSearch || showFilter || customButton) && (
+  <div className="flex items-center gap-2.5">
+    {showSearch && (
+      <div className="relative w-[429px] bg-white">
+        <input
+          type="search"
+          name="tablesearch"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="w-full rounded-[8px] border border-[#2525251A] px-3.5 py-2.5 pl-10 leading-[1]"
+        />
+        <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
+      </div>
+    )}
+    
+    {showFilter && (
+      <div className="bg-white">
+        <DropDownButton
+          btnText={filterButtonText}
+          btnIcon={<IoFilterOutline className="text-lime-400" />}
+          options={filterOptions}
+          onSelect={handleFilterChange}
+        />
+      </div>
+    )}
+
+    {customButton && (
+      <div className="bg-white">{customButton}</div>
+    )}
+  </div>
+)}
+
       </div>
 
       <div className="p-2.5 rounded-[12px] border border-[#0000001A] bg-white">

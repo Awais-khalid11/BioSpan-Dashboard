@@ -7,7 +7,7 @@ import Supplements from "../pages/Supplements";
 import BioScore from "../pages/BioScore";
 import AICoach from "../pages/AICoach";
 import Protocols from "../pages/protocols/Protocols";
-import Settings from "../pages/Settings"
+import Setting from "../pages/setting/Setting";
 import UserDetail from "../pages/UserDeatil";
 import SupplementModal from "../pages/SupplementModal";
 import EditProtocol from "../pages/protocols/components/EditProtocol";
@@ -20,15 +20,15 @@ const Routers = () => {
 
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="/user" element={<User />} />
-        <Route path="/supplements" element={<Supplements  />}/>
-        <Route path = "/bioScore" element={<BioScore/>}/>
-        <Route path = "/aicoach" element={<AICoach/>}/>
-        <Route path = "/protocols" element={<Protocols/>}/>
-                <Route path = "/edit-protocol" element={<EditProtocol/>}/>
+        <Route path="/supplements" element={<Supplements />} />
+        <Route path="/bioScore" element={<BioScore />} />
+        <Route path="/aicoach" element={<AICoach />} />
+        <Route path="/protocols" element={<Protocols />} />
+        <Route path="/edit-protocol" element={<EditProtocol />} />
 
-        <Route path = "/settings" element={<Settings/>}/>
-<Route path="/user-detail/:id" element={<UserDetail />} />
-<Route path="/supplement-modal" element={<SupplementModal />} />
+        <Route path="/settings" element={<Setting />} />
+        <Route path="/user-detail/:id" element={<UserDetail />} />
+        <Route path="/supplement-modal" element={<SupplementModal />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

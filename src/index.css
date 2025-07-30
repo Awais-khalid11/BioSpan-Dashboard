@@ -45,3 +45,12 @@ h1, h2, h3, h4, h5, h6 {
 .react-datepicker__input-container input{
   text-align: center !important;
 }
+path.recharts-sector{
+    outline: none !important;
+
+}
+
+
+.recharts-surface {
+  outline: none !important;
+}

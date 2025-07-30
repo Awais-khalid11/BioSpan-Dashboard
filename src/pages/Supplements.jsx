@@ -242,28 +242,28 @@ const navigate = useNavigate();
   
 
   return (
-    <div className="">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Supplements Management</h1>
-        <button 
-          onClick={() => {
-            navigate("/supplement-modal"); 
-          }}
-          className="bg-[#072723] text-[#B0ED56] px-5 py-2.5 rounded-[8px] flex items-center gap-2 cursor-pointer font-medium text-[16px]"
-        >
-          <Plus className="w-4 h-4" />
-          Add New Supplement
-        </button>
-      </div>
-      <BasicTable 
-        title="" 
-        columns={columns} 
-        data={tableData}
-        showFilter={false}
-        showSearch={false}
-        showPagination={true} 
-        itemsPerPage={5} 
-      />
+    <div>
+<BasicTable
+  title="Supplements Managment"
+  columns={columns}
+  data={tableData}
+  showPagination={true}
+  showSearch={false}
+  showFilter={false}
+  filterButtonText="Filter by Goal & Status"
+  itemsPerPage={5}
+  customButton={(
+    <button 
+      onClick={() => navigate("/edit-protocol")} 
+      className="bg-[#072723] text-[#B0ED56] px-5 py-2.5 rounded-[8px] flex items-center gap-2 cursor-pointer font-medium text-[16px]"
+    >
+      <Plus className="w-4 h-4" />
+      Add New Supplement
+    </button>
+  )}
+/>
+
+      
     </div>
   );
 };

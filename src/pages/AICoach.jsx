@@ -1,8 +1,8 @@
-import  { useState } from "react";
+import React, { useState } from "react";
+import { X,} from "lucide-react";
 import { TbEdit } from "react-icons/tb";
 import BasicTable from "../components/BasicTable";
-import { X } from "lucide-react"; // or wherever your X icon comes from
-
+import { useNavigate } from "react-router-dom";
 
 // Status rendering
 const renderStatus = (status) => {
@@ -23,12 +23,14 @@ const renderStatus = (status) => {
   );
 };
 
-const AiCoach = () => {
+const AICoach = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [isActive, setIsActive] = useState(true);
 
   const handleEdit = (row) => {
     setSelectedRow(row);
+    setIsActive(row.status?.props?.children === "Active");
     setOpenModal(true);
   };
 
@@ -107,7 +109,7 @@ const AiCoach = () => {
         onClick={() => handleEdit(row)}
         className="flex items-center text-gray-600 text-sm hover:text-gray-800 transition-colors"
       >
-        <TbEdit className="h-3 w-3 mr-0.5" />
+     <TbEdit className="h-3 w-3 mr-0.5" />
        <b> Edit</b>
       </button>
     ),
@@ -127,50 +129,87 @@ const AiCoach = () => {
 
       {/* Modal */}
       {openModal && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex justify-center items-center">
-          <div className="bg-white w-[500px] rounded-xl p-6 shadow-lg relative">
-            <button onClick={closeModal} className="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+        <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center">
+          <div className="bg-white w-[700px] rounded-xl p-6 shadow-lg relative">
+            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
               <X className="w-5 h-5" />
             </button>
-            <h2 className="text-xl font-semibold mb-4">Edit BioScore</h2>
+            <h2 className="text-xl font-semibold mb-6">Add Prompt</h2>
 
-            <div className="space-y-3">
-              <div>
-                <label className="text-sm font-medium">Prompt</label>
-                <input
-                  type="text"
-                  value={selectedRow?.prompt || ""}
-                  className="w-full mt-1 border rounded px-3 py-2"
-                  readOnly
-                />
+            <div className="grid grid-cols-2 gap-6">
+              {/* Left Column */}
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Trigger Prompt</label>
+                  <input
+                    type="text"
+                    defaultValue={selectedRow?.prompt || ""}
+                    placeholder="ifeel tired in the mornings"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 placeholder-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Ai Response</label>
+                  <input
+                    type="text"
+                    defaultValue={selectedRow?.prompt || ""}
+                    placeholder="ifeel tired in the mornings"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 placeholder-gray-400"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="text-sm font-medium">AI Response</label>
-                <textarea
-                  rows={3}
-                  defaultValue={selectedRow?.bioscore || ""}
-                  className="w-full mt-1 border rounded px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Goals</label>
-                <input
-                  type="text"
-                  value={selectedRow?.goals || ""}
-                  className="w-full mt-1 border rounded px-3 py-2"
-                  readOnly
-                />
+
+              {/* Right Column */}
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Linked Goal</label>
+                  <div className="relative">
+                    <select className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 appearance-none bg-white">
+                      <option value="Sleep">Sleep</option>
+                      <option value="Fat Loss">Fat Loss</option>
+                      <option value="Longevity">Longevity</option>
+                      <option value="Sleep Opt.">Sleep Opt.</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Status:</label>
+                  <div className="flex items-center">
+                    <div className="relative">
+                      <div 
+                        className={`w-12 h-6 rounded-full shadow-inner cursor-pointer transition-colors ${
+                          isActive ? 'bg-green-500' : 'bg-gray-300'
+                        }`}
+                        onClick={() => setIsActive(!isActive)}
+                      >
+                        <div 
+                          className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transform transition-transform ${
+                            isActive ? 'translate-x-6' : 'translate-x-0.5'
+                          }`}
+                        ></div>
+                      </div>
+                      <span className="ml-3 text-sm font-medium text-gray-700">
+                        {isActive ? 'Active' : 'Inactive'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="flex justify-end mt-6">
+            <div className="flex justify-between mt-8">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 rounded bg-gray-100 text-gray-700 hover:bg-gray-200 mr-2"
+                className="px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
-              <button className="px-4 py-2 rounded bg-[#6C47FF] text-white hover:bg-[#5a3de0]">
+              <button className="px-8 py-2.5 rounded-lg w-135 bg-[#1a472a] text-white hover:bg-[#0f3a1a] transition-colors">
                 Save
               </button>
             </div>
@@ -181,4 +220,4 @@ const AiCoach = () => {
   );
 };
 
-export default AiCoach;
+export default AICoach;
