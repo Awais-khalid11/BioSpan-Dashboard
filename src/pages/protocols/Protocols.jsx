@@ -1,10 +1,9 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import BasicTable from "../../components/BasicTable";
 import { X } from "lucide-react"; // or wherever your X icon comes from
-import { Plus } from "lucide-react"; 
+import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom"; // if not already
-
 
 // Status rendering
 const renderStatus = (status) => {
@@ -33,8 +32,7 @@ const Protocols = () => {
     setSelectedRow(row);
     setOpenModal(true);
   };
-const navigate = useNavigate();
-  
+  const navigate = useNavigate();
 
   const columns = [
     { label: "Prompt/Trigger", key: "prompt" },
@@ -103,38 +101,37 @@ const navigate = useNavigate();
     ...row,
     action: (
       <button
-        onClick={() => navigate("/edit-protocol")} 
+        onClick={() => navigate("/edit-protocol")}
         className="flex items-center text-gray-600 text-sm hover:text-gray-800 transition-colors"
       >
         <TbEdit className="h-3 w-3 mr-0.5" />
-       <b> Edit</b>
+        <b> Edit</b>
       </button>
     ),
   }));
 
   return (
     <div>
-<BasicTable
-  title="AI Coach Manager"
-  columns={columns}
-  data={tableData}
-  showPagination={true}
-  showSearch={true}
-  showFilter={true}
-  filterButtonText="Filter by Goal & Status"
-  itemsPerPage={5}
-  customButton={(
-    <button 
-      onClick={() => navigate("/edit-protocol")} 
-      className="bg-[#072723] text-[#B0ED56] px-5 py-2.5 rounded-[8px] flex items-center gap-2 cursor-pointer font-medium text-[16px]"
-    >
-      <Plus className="w-4 h-4" />
-      Add New Protocol
-    </button>
-  )}
-/>
-
-      
+      <BasicTable
+        title="AI Coach Manager"
+        columns={columns}
+        data={tableData}
+        showPagination={true}
+        showSearch={true}
+        showFilter={true}
+        showExtraIcon={true}
+        filterButtonText="Filter by Goal & Status"
+        itemsPerPage={5}
+        customButton={
+          <button
+            onClick={() => navigate("/edit-protocol")}
+            className="bg-[#072723] text-[#B0ED56] px-5 py-2.5 rounded-[8px] flex items-center gap-2 cursor-pointer font-medium text-[16px]"
+          >
+            <Plus className="w-4 h-4" />
+            Add New Protocol
+          </button>
+        }
+      />
     </div>
   );
 };

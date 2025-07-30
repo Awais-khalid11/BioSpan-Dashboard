@@ -5,6 +5,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CiInboxIn } from "react-icons/ci";
+import { FaChevronDown } from "react-icons/fa";
 
 const BasicTable = ({
   title,
@@ -17,6 +18,7 @@ const BasicTable = ({
   filterButtonText = "Filters",
   itemsPerPage = 10,
   showExportBtn = false,
+  showExtraIcon = false,
   customButton,
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -124,15 +126,26 @@ const BasicTable = ({
             )}
 
             {showFilter && (
-              <div className="bg-white">
+              <div className="bg-white rounded-[10px]">
                 <DropDownButton
-                  btnText={filterButtonText}
-                  btnIcon={<IoFilterOutline className="text-lime-400" />}
+                  btnText=""
+                  btnIcon={
+                    <div className="flex items-center gap-2">
+                      <IoFilterOutline className="text-lime-400" />
+                      <span className="text-gray-800 font-medium">
+                        {filterButtonText}
+                      </span>
+                      {showExtraIcon && (
+                        <FaChevronDown className="text-black" />
+                      )}
+                    </div>
+                  }
                   options={filterOptions}
                   onSelect={handleFilterChange}
                 />
               </div>
             )}
+
             {showDatePicker && (
               <div className="relative bg-white flex-1 rounded-[8px] border border-[#2525251A]">
                 <DatePicker

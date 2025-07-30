@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X,} from "lucide-react";
+import { X } from "lucide-react";
 import { TbEdit } from "react-icons/tb";
 import BasicTable from "../components/BasicTable";
 import { useNavigate } from "react-router-dom";
@@ -109,8 +109,8 @@ const AICoach = () => {
         onClick={() => handleEdit(row)}
         className="flex items-center text-gray-600 text-sm hover:text-gray-800 transition-colors"
       >
-     <TbEdit className="h-3 w-3 mr-0.5" />
-       <b> Edit</b>
+        <TbEdit className="h-3 w-3 mr-0.5" />
+        <b> Edit</b>
       </button>
     ),
   }));
@@ -125,13 +125,17 @@ const AICoach = () => {
         showDatePicker={true}
         filterButtonText="Filter by Goal & Status"
         itemsPerPage={5}
+        showExtraIcon={true}
       />
 
       {/* Modal */}
       {openModal && (
         <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center">
           <div className="bg-white w-[700px] rounded-xl p-6 shadow-lg relative">
-            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
               <X className="w-5 h-5" />
             </button>
             <h2 className="text-xl font-semibold mb-6">Add Prompt</h2>
@@ -140,7 +144,9 @@ const AICoach = () => {
               {/* Left Column */}
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Trigger Prompt</label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">
+                    Trigger Prompt
+                  </label>
                   <input
                     type="text"
                     defaultValue={selectedRow?.prompt || ""}
@@ -149,7 +155,9 @@ const AICoach = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Ai Response</label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">
+                    Ai Response
+                  </label>
                   <input
                     type="text"
                     defaultValue={selectedRow?.prompt || ""}
@@ -162,7 +170,9 @@ const AICoach = () => {
               {/* Right Column */}
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Linked Goal</label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">
+                    Linked Goal
+                  </label>
                   <div className="relative">
                     <select className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 appearance-none bg-white">
                       <option value="Sleep">Sleep</option>
@@ -171,30 +181,42 @@ const AICoach = () => {
                       <option value="Sleep Opt.">Sleep Opt.</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-4 h-4 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Status:</label>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">
+                    Status:
+                  </label>
                   <div className="flex items-center">
                     <div className="relative">
-                      <div 
+                      <div
                         className={`w-12 h-6 rounded-full shadow-inner cursor-pointer transition-colors ${
-                          isActive ? 'bg-green-500' : 'bg-gray-300'
+                          isActive ? "bg-green-500" : "bg-gray-300"
                         }`}
                         onClick={() => setIsActive(!isActive)}
                       >
-                        <div 
+                        <div
                           className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transform transition-transform ${
-                            isActive ? 'translate-x-6' : 'translate-x-0.5'
+                            isActive ? "translate-x-6" : "translate-x-0.5"
                           }`}
                         ></div>
                       </div>
                       <span className="ml-3 text-sm font-medium text-gray-700">
-                        {isActive ? 'Active' : 'Inactive'}
+                        {isActive ? "Active" : "Inactive"}
                       </span>
                     </div>
                   </div>

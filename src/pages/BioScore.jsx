@@ -128,10 +128,7 @@ const BioScore = () => {
     const actionOptions = [
       {
         label: (
-          <button
-            className="cursor-pointer w-full"
-            
-          >
+          <button className="cursor-pointer w-full">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-2">
                 <span>HRV</span>
@@ -292,17 +289,16 @@ const BioScore = () => {
 
   return (
     <div>
-  <BasicTable
-  title="BioScore Logs"
-  columns={columns}
-  data={data}
-  showPagination={true}
-  showDatePicker={true}
-  filterButtonText="Filter by Goal & Plan" 
-  showExportBtn={true}
-/>
-
-
+      <BasicTable
+        title="BioScore Logs"
+        columns={columns}
+        data={data}
+        showPagination={true}
+        showDatePicker={true}
+        filterButtonText="Filter by Goal & Plan"
+        showExportBtn={true}
+        showExtraIcon={true}
+      />
     </div>
   );
 };
