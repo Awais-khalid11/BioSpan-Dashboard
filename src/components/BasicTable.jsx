@@ -17,7 +17,7 @@ const BasicTable = ({
   filterButtonText = "Filters",
   itemsPerPage = 10,
   showExportBtn = false,
-   customButton,
+  customButton,
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -34,12 +34,11 @@ const BasicTable = ({
     console.log("Selected Filter:", option);
   };
 
-const filteredData = data.filter((row) =>
-  Object.values(row).some((value) =>
-    String(value).toLowerCase().includes(searchTerm.toLowerCase())
-  )
-);
-
+  const filteredData = data.filter((row) =>
+    Object.values(row).some((value) =>
+      String(value).toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
 
   const totalItems = filteredData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -108,39 +107,52 @@ const filteredData = data.filter((row) =>
           <h1 className="leading-[1]">{title}</h1>
         </div>
 
-       {(showSearch || showFilter || customButton) && (
-  <div className="flex items-center gap-2.5">
-    {showSearch && (
-      <div className="relative w-[429px] bg-white">
-        <input
-          type="search"
-          name="tablesearch"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="w-full rounded-[8px] border border-[#2525251A] px-3.5 py-2.5 pl-10 leading-[1]"
-        />
-        <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
-      </div>
-    )}
-    
-    {showFilter && (
-      <div className="bg-white">
-        <DropDownButton
-          btnText={filterButtonText}
-          btnIcon={<IoFilterOutline className="text-lime-400" />}
-          options={filterOptions}
-          onSelect={handleFilterChange}
-        />
-      </div>
-    )}
+        {(showSearch || showFilter || customButton) && (
+          <div className="flex items-center gap-2.5">
+            {showSearch && (
+              <div className="relative w-[429px] bg-white">
+                <input
+                  type="search"
+                  name="tablesearch"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="w-full rounded-[8px] border border-[#2525251A] px-3.5 py-2.5 pl-10 leading-[1]"
+                />
+                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
+              </div>
+            )}
 
-    {customButton && (
-      <div className="bg-white">{customButton}</div>
-    )}
-  </div>
-)}
+            {showFilter && (
+              <div className="bg-white">
+                <DropDownButton
+                  btnText={filterButtonText}
+                  btnIcon={<IoFilterOutline className="text-lime-400" />}
+                  options={filterOptions}
+                  onSelect={handleFilterChange}
+                />
+              </div>
+            )}
+            {showDatePicker && (
+              <div className="relative bg-white flex-1 rounded-[8px] border border-[#2525251A]">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                  className="w-full py-2.5 pl-11 pr-3.5 text-sm rounded-[8px] outline-none"
+                  placeholderText="Pick a date"
+                  dateFormat="yyyy-MM-dd"
+                />
+                <img
+                  src="/assets/icons/calendar.svg"
+                  alt="Calendar"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+                />
+              </div>
+            )}
 
+            {customButton && <div className="bg-white">{customButton}</div>}
+          </div>
+        )}
       </div>
 
       <div className="p-2.5 rounded-[12px] border border-[#0000001A] bg-white">

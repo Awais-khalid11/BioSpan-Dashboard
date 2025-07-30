@@ -175,7 +175,7 @@ const allCardsData = {
   ],
 };
 
-const Home = () => {
+const Dashboard = () => {
   const [activeButton, setActiveButton] = useState("This Month");
 
   const handleButtonClick = (buttonText) => {
@@ -186,7 +186,7 @@ const Home = () => {
 
   return (
     <div className="">
-      <div className="flex flex-col sm:flex-row justify-between flex-wrap items-start sm:items-center mb-3.5">
+      <div className="flex flex-col sm:flex-row justify-between flex-wrap items-start sm:items-center mb-[15px] mt-1.5">
         <div className="text-[25px] font-bold text-black leading-[1] mb-4 sm:mb-0">
           <h1>Summary Overview</h1>
         </div>
@@ -225,14 +225,12 @@ const Home = () => {
         <div className="w-[67%]">
           <WearableChart />
         </div>
-        <div className="w-[32%]"><PieCharts /> </div>
-                         
-
+        <div className="w-[32%]">
+          <PieCharts />{" "}
+        </div>
       </div>
-      
-        
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

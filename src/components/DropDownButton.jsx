@@ -1,6 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
-const DropDownButton = ({ btnText = "Options", btnIcon, options = [], onSelect }) => {
+const DropDownButton = ({
+  btnText = "Options",
+  btnIcon,
+  options = [],
+  onSelect,
+}) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 

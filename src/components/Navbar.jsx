@@ -1,15 +1,23 @@
 import { ReactSVG } from "react-svg";
+import { FiMenu } from "react-icons/fi";
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
   return (
-    <div className="h-25 rounded-[20px] bg-white m-2.5 px-6 flex justify-between items-center border border-[#00000012]">
-      <div className="flex flex-col">
-        <h1 className="text-2xl font-semibold text-black hidden md:block">
-          👋 Hey! John Doe
-        </h1>
-        <p className="text-sm text-gray-600 hidden md:block">
-          Track growth, manage users, and optimize health protocols.
-        </p>
+    <div className="h-25 rounded-[20px] shadow-md bg-white m-2.5 px-6 flex justify-between items-center border border-[#00000012]">
+      <div className="flex items-center">
+        {/* Hamburger menu for mobile */}
+        <button className="mr-4 md:hidden text-gray-600" onClick={onMenuClick}>
+          <FiMenu size={24} />
+        </button>
+
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-semibold text-black hidden md:block">
+            👋 Hey! John Doe
+          </h1>
+          <p className="text-sm text-gray-600 hidden md:block">
+            Track growth, manage users, and optimize health protocols.
+          </p>
+        </div>
       </div>
 
       <div className="flex items-center gap-4 ml-auto">
@@ -23,7 +31,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md shadow-sm "
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md shadow-sm"
           />
         </div>
 

@@ -1,35 +1,28 @@
-import React from 'react';
-import {
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  Cell,
-} from 'recharts';
+import React from "react";
+import { Pie, PieChart, ResponsiveContainer, Tooltip, Cell } from "recharts";
 
 const pieChartData = [
-  { name: 'Fat Loss', value: 200, color: '#003333' },
-  { name: 'Muscle Gain', value: 150, color: '#00C49F' },
-  { name: 'Longevity', value: 100, color: '#6A0DAD' },
-  { name: 'Sleep Optimization', value: 50, color: '#FFBB28' },
-  { name: 'Other', value: 20, color: '#98FB98' },
+  { name: "Fat Loss", value: 200, color: "#003333" },
+  { name: "Muscle Gain", value: 150, color: "#00C49F" },
+  { name: "Longevity", value: 100, color: "#6A0DAD" },
+  { name: "Sleep Optimization", value: 50, color: "#FFBB28" },
+  { name: "Other", value: 20, color: "#98FB98" },
 ];
 
 const PieCharts = () => {
   const totalValue = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
 
   return (
-    <div className="p-5 rounded-[20px] drop-shadow-[0_0_30px_rgba(0,0,0,0.1)] 
- bg-white font-inter">
+    <div
+      className="p-5 rounded-[20px] drop-shadow-[0_0_30px_rgba(0,0,0,0.1)] 
+ bg-white font-inter"
+    >
       <div className="text-[25px] font-bold text-black mb-4 sm:mb-0">
-          <h1 className='leading-[1]'>Goal Pie Chart</h1>
-        </div>
+        <h1 className="leading-[1]">Goal Pie Chart</h1>
+      </div>
 
       <div className="flex flex-col lg:flex-row items-center gap-1">
-        <div
-          className="relative"
-          style={{ width: '237px', height: '237px' }}
-        >
+        <div className="relative" style={{ width: "237px", height: "237px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -56,22 +49,21 @@ const PieCharts = () => {
         </div>
 
         <div className="flex flex-col">
-  {pieChartData.map((entry, index) => (
-    <div key={`legend-${index}`} className="flex items-start mb-2">
-      <span
-        className="w-3 h-3 rounded-full mr-2 mt-1"
-        style={{ backgroundColor: entry.color }}
-      ></span>
-      <div className="flex flex-col">
-        <span className="text-sm text-gray-700">{entry.name}</span>
-        <span className="text-sm text-gray-500">
-          {((entry.value / totalValue) * 100).toFixed(0)}%
-        </span>
-      </div>
-    </div>
-  ))}
-</div>
-
+          {pieChartData.map((entry, index) => (
+            <div key={`legend-${index}`} className="flex items-start mb-2">
+              <span
+                className="w-3 h-3 rounded-full mr-2 mt-1"
+                style={{ backgroundColor: entry.color }}
+              ></span>
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-700">{entry.name}</span>
+                <span className="text-sm text-gray-500">
+                  {((entry.value / totalValue) * 100).toFixed(0)}%
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

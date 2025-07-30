@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Kumbh+Sans:wght@100..900&display=swap');
 @import "tailwindcss";
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @theme {
-  --font-sans: "Lato", sans-serif;
-  --font-opensans: "Open Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Kumbh Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  /* Optionally override default… */
+  --font-sans: var(--font-body);
 }
+
+
 
 @theme {
   --color-primary: #51111d;

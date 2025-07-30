@@ -4,10 +4,15 @@ import Selector from "../../../components/Selector";
 
 const GeneralSettingForm = () => {
   const [selectedGoal, setSelectedGoal] = useState("english");
-  const [status, setStatus] = useState("Active");
+  const [notificationStatus, setNotificationStatus] = useState("Active");
+  const [maintenanceStatus, setMaintenanceStatus] = useState("Active");
 
-  const toggleStatus = () => {
-    setStatus((prev) => (prev === "Active" ? "Hidden" : "Active"));
+  const toggleNotification = () => {
+    setNotificationStatus((prev) => (prev === "Active" ? "Hidden" : "Active"));
+  };
+
+  const toggleMaintenance = () => {
+    setMaintenanceStatus((prev) => (prev === "Active" ? "Hidden" : "Active"));
   };
 
   const timeOptions = [
@@ -78,14 +83,18 @@ const GeneralSettingForm = () => {
               </span>
               <button
                 type="button"
-                onClick={toggleStatus}
+                onClick={toggleNotification}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  status === "Active" ? "bg-green-500" : "bg-gray-300"
+                  notificationStatus === "Active"
+                    ? "bg-green-500"
+                    : "bg-gray-300"
                 }`}
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    status === "Active" ? "translate-x-6" : "translate-x-1"
+                    notificationStatus === "Active"
+                      ? "translate-x-6"
+                      : "translate-x-1"
                   }`}
                 />
               </button>
@@ -105,14 +114,18 @@ const GeneralSettingForm = () => {
               </span>
               <button
                 type="button"
-                onClick={toggleStatus}
+                onClick={toggleMaintenance}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  status === "Active" ? "bg-green-500" : "bg-gray-300"
+                  maintenanceStatus === "Active"
+                    ? "bg-green-500"
+                    : "bg-gray-300"
                 }`}
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    status === "Active" ? "translate-x-6" : "translate-x-1"
+                    maintenanceStatus === "Active"
+                      ? "translate-x-6"
+                      : "translate-x-1"
                   }`}
                 />
               </button>

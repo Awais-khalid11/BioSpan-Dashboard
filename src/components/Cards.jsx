@@ -59,9 +59,8 @@ const Cards = ({ icon, users, userNumber, analytics, total }) => {
         </p>
       </div>
       <div className="text-sm leading-[1] opacity-80 line-clamp-1">
-  <p>{total}</p>
-</div>
-
+        <p>{total}</p>
+      </div>
     </div>
   );
 };
