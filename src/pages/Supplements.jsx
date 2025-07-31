@@ -3,14 +3,11 @@ import BasicTable from "../components/BasicTable";
 import {
   Edit2,
   Plus,
-  ArrowLeft,
-  ArrowRight,
   Trash2,
   CheckCircle,
   XCircle,
   MoreVertical,
   ChevronRight,
-  ChevronDown,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +19,91 @@ const columns = [
   { label: "Status", key: "status" },
   { label: "Action", key: "action" },
 ];
+
+const CustomDropdown = ({ id, currentStatus, onToggle }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button onClick={() => setOpen(!open)}>
+        <MoreVertical className="h-4 w-4 text-gray-600" />
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-md z-50">
+          <button
+            onClick={() => navigate("/supplement-modal")}
+            className="w-full px-4 py-2 text-sm hover:bg-gray-100 text-left"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Edit2 className="w-4 h-4 text-gray-600" />
+                <span>Edit</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-400" />
+            </div>
+          </button>
+
+          <div className="w-full px-4 py-2 text-sm hover:bg-gray-100">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Plus className="w-4 h-4 text-gray-600" />
+                <span>Add</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-400" />
+            </div>
+          </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggle(id);
+            }}
+            className="w-full px-4 py-2 text-sm hover:bg-gray-100 text-left"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-green-600">Active</span>
+              </div>
+              <div
+                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  currentStatus === "Active" ? "bg-green-500" : "bg-gray-300"
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    currentStatus === "Active"
+                      ? "translate-x-5"
+                      : "translate-x-0.5"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+
+          <div className="w-full px-4 py-2 text-sm hover:bg-gray-100 text-left">
+            <div className="flex items-center gap-2 text-red-500">
+              <Trash2 className="w-4 h-4" />
+              <span>Delete</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Supplements = () => {
   const navigate = useNavigate();
@@ -84,14 +166,6 @@ const Supplements = () => {
     },
   ]);
 
-  const [openDropdownId, setOpenDropdownId] = useState(null);
-  const dropdownRefs = useRef({});
-
-  const addSupplement = (newSupplement) => {
-    const nextId = Math.max(...supplements.map((s) => s.id)) + 1;
-    setSupplements((prev) => [...prev, { ...newSupplement, id: nextId }]);
-  };
-
   const toggleStatus = (id) => {
     setSupplements((prev) =>
       prev.map((item) =>
@@ -103,12 +177,6 @@ const Supplements = () => {
           : item
       )
     );
-    setOpenDropdownId(null); // Close dropdown after action
-  };
-
-  const deleteSupplement = (id) => {
-    setSupplements((prev) => prev.filter((item) => item.id !== id));
-    setOpenDropdownId(null); // Close dropdown after action
   };
 
   const formatStatus = (status) => {
@@ -131,134 +199,26 @@ const Supplements = () => {
     );
   };
 
-  // Handle clicks outside dropdowns
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      Object.values(dropdownRefs.current).forEach((ref) => {
-        if (ref && !ref.contains(event.target)) {
-          setOpenDropdownId(null);
-        }
-      });
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const formatActions = (id) => {
-    const currentStatus = supplements.find((s) => s.id === id)?.status;
-
-    return (
-      <div className="relative" ref={(el) => (dropdownRefs.current[id] = el)}>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpenDropdownId(openDropdownId === id ? null : id);
-          }}
-          className="p-1 rounded hover:bg-gray-100"
-        >
-          <MoreVertical className="h-4 w-4 text-gray-600" />
-        </button>
-
-        {openDropdownId === id && (
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
-            <ul className="py-1 text-sm text-gray-700">
-              <li>
-                <button
-                  onClick={() => {
-                    navigate("/supplement-modal");
-                    setOpenDropdownId(null);
-                  }}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <Edit2 className="w-4 h-4 text-gray-600" />
-                    <span>Edit</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    // Add new supplement logic here
-                    setOpenDropdownId(null);
-                  }}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <Plus className="w-4 h-4 text-gray-600" />
-                    <span>Add</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleStatus(id);
-                  }}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span className="text-green-600">Active</span>
-                  </div>
-                  <div
-                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                      currentStatus === "Active"
-                        ? "bg-green-500"
-                        : "bg-gray-300"
-                    }`}
-                  >
-                    <span
-                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                        currentStatus === "Active"
-                          ? "translate-x-5"
-                          : "translate-x-0.5"
-                      }`}
-                    />
-                  </div>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteSupplement(id);
-                  }}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center justify-between text-red-500"
-                >
-                  <div className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-4" />
-                    <span>Delete</span>
-                  </div>
-                </button>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-    );
-  };
-
   const tableData = supplements.map((item) => ({
     supplements: item.supplements,
     category: item.category,
     goal: item.goal,
     description: item.description,
     status: formatStatus(item.status),
-    action: formatActions(item.id),
+    action: (
+      <CustomDropdown
+        id={item.id}
+        currentStatus={item.status}
+        onToggle={toggleStatus}
+      />
+    ),
     raw: item,
   }));
 
   return (
     <div>
       <BasicTable
-        title="Supplements Management"
+        title="Supplements Managment"
         columns={columns}
         data={tableData}
         showPagination={true}
