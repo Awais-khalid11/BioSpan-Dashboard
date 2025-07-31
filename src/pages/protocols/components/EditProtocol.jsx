@@ -18,25 +18,28 @@ const EditProtocol = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-[25px] font-bold text-black mb-4 leading-[1]">
-        Edit Protocol{" "}
+    <div className="p-4 md:p-6">
+      <h1 className="text-xl md:text-2xl font-bold text-black mb-4">
+        Edit Protocol
       </h1>
 
-      <div className="bg-white rounded-[12px] border border-[#0000001A] p-5">
+      <div className="bg-white rounded-lg md:rounded-xl border border-gray-200 p-4 md:p-6">
         <form action="#">
-          <h3 className="text-[20px] font-bold text-black mb-4">
+          <h3 className="text-lg md:text-xl font-bold text-black mb-4">
             User Details
           </h3>
 
-          <div className="flex items-center gap-5 mb-5">
-            <Input
-              label="Protocol Name"
-              type="text"
-              value="Sleep"
-              id="supplement-name"
-            />
-            <div className="w-1/2">
+          {/* Protocol Name and Assigned Goals */}
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Protocol Name"
+                type="text"
+                value="Sleep"
+                id="supplement-name"
+              />
+            </div>
+            <div className="w-full md:w-1/2">
               <Selector
                 label="Assigned Goals"
                 options={goalOptions}
@@ -46,20 +49,23 @@ const EditProtocol = () => {
             </div>
           </div>
 
-          <div className="flex gap-5 mb-5">
-            <Input
-              label="Short Description:"
-              type="text"
-              value="A comprehensive nightly protocol specifically designed to enhance deep sleep quality, promote faster muscle recovery, and support overall nighttime regeneration through targeted supplementation and recovery strategies."
-              id="short-description"
-            />
+          {/* Short Description and Add Supplements */}
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Short Description:"
+                type="text"
+                value="A comprehensive nightly protocol specifically designed to enhance deep sleep quality, promote faster muscle recovery, and support overall nighttime regeneration through targeted supplementation and recovery strategies."
+                id="short-description"
+              />
+            </div>
 
-            {/* Updated Add Supplements section */}
-            <div className="w-1/2">
-              <label className="text-[#323232] text-[15px] font-semibold mb-2 block">
+            {/* Add Supplements section */}
+            <div className="w-full md:w-1/2">
+              <label className="text-gray-800 text-sm md:text-base font-semibold mb-2 block">
                 Add Supplements
               </label>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
                 {[
                   "Melatonin 3mg",
                   "Magnesium Glycinate",
@@ -69,12 +75,12 @@ const EditProtocol = () => {
                 ].map((supplement) => (
                   <label
                     key={supplement}
-                    className="inline-flex items-center justify-between px-4 py-2 rounded-[12px] border border-[#D9D9D9] bg-[#FAFAFA] text-sm text-[#252525]"
+                    className="flex items-center justify-between px-3 py-2 rounded-lg border border-gray-300 bg-gray-50 text-xs md:text-sm text-gray-800"
                   >
-                    <span className="mr-2">{supplement}</span>
+                    <span className="mr-2 truncate">{supplement}</span>
                     <input
                       type="checkbox"
-                      className="form-checkbox h-4 w-4 text-green-600"
+                      className="form-checkbox h-3 w-3 md:h-4 md:w-4 text-green-600"
                       value={supplement}
                     />
                   </label>
@@ -83,23 +89,26 @@ const EditProtocol = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-5 mb-5">
-            <Input
-              label="Created Date"
-              type="date"
-              value="2025-05-02"
-              id="created-date"
-            />
+          {/* Created Date and Status */}
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Created Date"
+                type="date"
+                value="2025-05-02"
+                id="created-date"
+              />
+            </div>
 
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <label>
-                <h3 className="text-[#323232] text-[15px] leading-[1] tracking-[1.6%] font-semibold">
+                <h3 className="text-gray-800 text-sm md:text-base font-semibold">
                   Status:
                 </h3>
               </label>
-              <div className="flex mt-3.5 items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
-                <span className="text-sm text-[#252525] opacity-50">
-                  Select “Active” to show this protocol or “Inactive” to hide
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mt-2 p-3 md:p-4 rounded-lg border border-gray-200 bg-white">
+                <span className="text-xs md:text-sm text-gray-600">
+                  Select "Active" to show this protocol or "Inactive" to hide
                   it.
                 </span>
 
@@ -120,17 +129,17 @@ const EditProtocol = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          {/* Footer Buttons */}
+          <div className="flex flex-col-reverse md:flex-row gap-3">
             <button
               type="button"
-              className="w-[20%] px-6 py-[17px] rounded-[12px] leading-[1] border border-[#252525] text-sm tracking-[1.6%] font-extrabold mb-0"
+              className="w-full md:w-1/5 px-4 py-3 md:py-4 rounded-lg border border-gray-800 text-sm font-bold"
             >
-              <h4>Cancel</h4>
+              Cancel
             </button>
-
             <button
               type="submit"
-              className="w-[80%] bg-[#072723] text-white leading-[1] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm tracking-[1.6%] font-extrabold mb-0"
+              className="w-full md:w-4/5 bg-[#072723] text-white px-4 py-3 md:py-4 rounded-lg border border-gray-800 text-sm font-bold"
             >
               Save Changes
             </button>

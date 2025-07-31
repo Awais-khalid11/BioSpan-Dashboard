@@ -1,42 +1,17 @@
 import React, { useState } from "react";
-import {
-  ArrowLeft,
-  Calendar,
-  Star,
-  Target,
-  Activity,
-  Shield,
-  User,
-} from "lucide-react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft, Calendar, Star, Shield } from "lucide-react";
+import { useParams, useNavigate } from "react-router-dom";
 import MiniTable from "../components/MiniTable";
 import Selector from "../components/Selector";
 import Cards from "../components/Cards";
 import Aim from "../../public/assets/icons/Aim.svg";
-import Avatar from "../../public/assets/images/Avatar.png"
+import Avatar from "../../public/assets/images/Avatar.png";
 
 const CardsData = [
-  {
-    icon: Aim,
-    userNumber: "Goal",
-    total: "Fat Loss",
-  },
-  {
-    icon: Aim,
-    userNumber: "Goal",
-    total: "Fat Loss",
-  },
-  {
-    icon: Aim,
-    userNumber: "Goal",
-    total: "Fat Loss",
-  },
-  {
-    icon: Aim,
-    userNumber: "Goal",
-    total: "Fat Loss",
-  },
+  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
 ];
 
 const UserDetail = () => {
@@ -49,37 +24,40 @@ const UserDetail = () => {
     { label: "Better Sleep", value: "sleep" },
   ];
 
-const { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  
   return (
     <div className="">
-      <div >
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
+      <div>
+        {/* Header */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-4 min-w-0">
             <button
               className="p-2 hover:bg-gray-100 rounded-lg cursor-pointer"
               onClick={() => navigate(-1)}
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-gray-900 break-words">
               User Detail View
             </h1>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg">
+          <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700">
             <Calendar className="w-4 h-4 text-gray-500" />
-            <span className="text-sm text-gray-700">Nov 23-Nov 29</span>
+            <span>Nov 23 - Nov 29</span>
           </div>
         </div>
-        <div className="bg-white py-5 px-4 border border-[#0000001A] rounded-[12px] ">
-          <div className="bg-white rounded-[20px] p-5 mb-6  border border-[#25252512]">
+
+        {/* User Summary */}
+        <div className="bg-white py-5 px-4 border border-[#0000001A] rounded-[12px]">
+          <div className="bg-white rounded-[20px] p-5 mb-6 border border-[#25252512]">
             <h2 className="text-[20px] text-black font-bold mb-6">
               User Summary
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left side */}
               <div>
                 <div className="flex items-start gap-4 mb-6">
                   <img
@@ -98,15 +76,18 @@ const { id } = useParams();
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-700">User Rank</span>
                   <div className="flex gap-1">
-                    <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                    <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                    <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                    <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
+                    {[...Array(4)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-orange-400 text-orange-400"
+                      />
+                    ))}
                     <Star className="w-4 h-4 text-gray-300" />
                   </div>
                 </div>
               </div>
 
+              {/* Right side */}
               <div className="space-y-4 bg-[#F7F7F7] rounded-2xl px-2.5">
                 <div className="flex items-center justify-between py-2.5 border-b border-[#0000001A]">
                   <div className="flex items-center gap-2">
@@ -119,7 +100,7 @@ const { id } = useParams();
                 </div>
 
                 <div className="flex items-center justify-between py-2.5 border-b border-[#0000001A]">
-                  <div className="flex items-center gap-2 ">
+                  <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm text-gray-700">Status</span>
                   </div>
@@ -128,7 +109,7 @@ const { id } = useParams();
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2.5 ">
+                <div className="flex items-center justify-between py-2.5">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-600" />
                     <span className="text-sm text-gray-700">Last Active</span>
@@ -139,42 +120,32 @@ const { id } = useParams();
                 </div>
               </div>
             </div>
+
             <MiniTable />
           </div>
 
-          <div className="bg-white rounded-[20px] p-5 mb-6  border border-[#25252512]">
+          {/* Admin Actions */}
+          <div className="bg-white rounded-[20px] p-5 mb-6 border border-[#25252512]">
             <h2 className="text-lg font-semibold text-gray-900 mb-6">
               Admin Actions
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Selector
-                label=""
-                options={goalOptions}
-                value={selectedGoal}
-                onChange={setSelectedGoal}
-              />
-              <Selector
-                label=""
-                options={goalOptions}
-                value={selectedGoal}
-                onChange={setSelectedGoal}
-              />
-              <Selector
-                label=""
-                options={goalOptions}
-                value={selectedGoal}
-                onChange={setSelectedGoal}
-              />
-              <Selector
-                label=""
-                options={goalOptions}
-                value={selectedGoal}
-                onChange={setSelectedGoal}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {Array(4)
+                .fill(null)
+                .map((_, i) => (
+                  <Selector
+                    key={i}
+                    label=""
+                    options={goalOptions}
+                    value={selectedGoal}
+                    onChange={setSelectedGoal}
+                  />
+                ))}
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5">
+          {/* Cards Section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {CardsData.map((card, index) => (
               <Cards
                 key={index}

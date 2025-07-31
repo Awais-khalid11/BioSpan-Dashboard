@@ -18,27 +18,29 @@ const SupplementModal = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-[25px] font-bold text-black mb-4 leading-[1]">
+    <div className="p-4 md:p-6">
+      <h1 className="text-xl md:text-2xl font-bold text-black mb-4">
         Add/Edit Supplement Modal
       </h1>
 
-      <div className="bg-white rounded-[12px] border border-[#0000001A] p-5">
+      <div className="bg-white rounded-lg md:rounded-xl border border-gray-200 p-4 md:p-6">
         <form>
-          <h3 className="text-[20px] font-bold text-black mb-4">
+          <h3 className="text-lg md:text-xl font-bold text-black mb-4">
             User Details
           </h3>
 
           {/* Supplement Name and Category */}
-          <div className="flex items-center gap-5 mb-5">
-            <Input
-              label="Supplement Name"
-              type="text"
-              defaultValue=""
-              placeholder="Enter supplement name"
-              id="supplement-name"
-            />
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Supplement Name"
+                type="text"
+                defaultValue=""
+                placeholder="Enter supplement name"
+                id="supplement-name"
+              />
+            </div>
+            <div className="w-full md:w-1/2">
               <Selector
                 label="Category"
                 options={goalOptions}
@@ -49,44 +51,48 @@ const SupplementModal = () => {
           </div>
 
           {/* Assigned Goals and Short Description */}
-          <div className="flex items-center gap-5 mb-5">
-            <Input
-              label="Assigned Goals"
-              type="text"
-              defaultValue=""
-              placeholder="Which health goals this supports"
-              id="assigned-goals"
-            />
-            <Input
-              label="Short Description"
-              type="text"
-              defaultValue=""
-              placeholder="Brief benefit summary"
-              id="short-description"
-            />
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Assigned Goals"
+                type="text"
+                defaultValue=""
+                placeholder="Which health goals this supports"
+                id="assigned-goals"
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Short Description"
+                type="text"
+                defaultValue=""
+                placeholder="Brief benefit summary"
+                id="short-description"
+              />
+            </div>
           </div>
 
           {/* Long Description and Status Toggle */}
-          <div className="flex items-center gap-5 mb-5">
-            <Input
-              label="Long Description"
-              type="text"
-              defaultValue=""
-              placeholder="Use this space to describe benefits, dosage, or science."
-              id="long-description"
-            />
-
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+            <div className="w-full md:w-1/2">
+              <Input
+                label="Long Description"
+                type="text"
+                defaultValue=""
+                placeholder="Use this space to describe benefits, dosage, or science."
+                id="long-description"
+              />
+            </div>
+            <div className="w-full md:w-1/2">
               <label htmlFor="status-toggle">
-                <h3 className="text-[#323232] text-[15px] leading-[1] tracking-[1.6%] font-semibold mb-3">
+                <h3 className="text-gray-800 text-sm md:text-base font-semibold mb-2 md:mb-3">
                   Status
                 </h3>
               </label>
-              <div className="flex items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
-                <span className="text-sm text-[#252525] opacity-50">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-3 md:py-4 px-4 md:px-5 rounded-lg border border-gray-200 bg-white">
+                <span className="text-xs md:text-sm text-gray-600 opacity-70 mb-2 md:mb-0">
                   Control whether this supplement is visible to users or not
                 </span>
-
                 <button
                   id="status-toggle"
                   type="button"
@@ -106,17 +112,16 @@ const SupplementModal = () => {
           </div>
 
           {/* Footer Buttons */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-3">
             <button
               type="button"
-              className="w-[20%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm tracking-[1.6%] font-extrabold"
+              className="w-full md:w-1/5 px-4 py-3 md:py-4 rounded-lg border border-gray-800 text-sm font-bold"
             >
               Cancel
             </button>
-
             <button
               type="submit"
-              className="w-[80%] bg-[#072723] text-white px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm tracking-[1.6%] font-extrabold"
+              className="w-full md:w-4/5 bg-[#072723] text-white px-4 py-3 md:py-4 rounded-lg border border-gray-800 text-sm font-bold"
             >
               Save Supplement
             </button>

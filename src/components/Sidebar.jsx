@@ -110,9 +110,9 @@ const Sidebar = ({ isOpen, onClose }) => {
             ))}
           </nav>
 
-          <button className="mt-auto bg-red-800/20 text-red-600 py-2 rounded-md flex items-center justify-center gap-2 hover:bg-red-600/45">
+          <button className="mt-auto flex items-center gap-3 px-4 py-2 rounded-lg transition border border-[#FFFFFF33] hover:bg-white/10 bg-red-800/20 text-red-600">
             <ReactSVG src="/assets/icons/logout.svg" className="w-5 h-5" />
-            Logout
+            <span>Logout</span>
           </button>
         </div>
       </div>
