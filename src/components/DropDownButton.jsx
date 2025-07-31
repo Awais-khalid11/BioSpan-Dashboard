@@ -7,7 +7,26 @@ const DropDownButton = ({
   onSelect,
 }) => {
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    // Check screen width on mount and resize
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -35,7 +54,14 @@ const DropDownButton = ({
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-100">
+        <div
+          className={`
+          absolute 
+          ${isMobile ? "left-0" : "right-0"}
+          mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] 
+          animate-in fade-in-0 zoom-in-95
+        `}
+        >
           <ul className="py-1 text-sm text-gray-700">
             {options.length > 0 ? (
               options.map((option, idx) => (

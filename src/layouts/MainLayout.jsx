@@ -8,14 +8,18 @@ const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex">
+    <div className="flex relative">
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
       <div
         className={`flex-1 flex flex-col h-screen overflow-hidden bg-gray-50 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64 md:ml-0" : "ml-0"
+          isSidebarOpen ? "md:ml-64" : ""
         }`}
       >
-        <Navbar onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+        <Navbar
+          onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          isSidebarOpen={isSidebarOpen}
+        />
         <main className="p-4 overflow-y-auto flex-1 bg-gray-50">
           <Outlet />
         </main>

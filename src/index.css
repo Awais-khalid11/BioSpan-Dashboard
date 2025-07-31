@@ -59,3 +59,13 @@ path.recharts-sector{
 .recharts-surface {
   outline: none !important;
 }
+/* Add this in global styles or via dev tools */
+::-webkit-scrollbar {
+  height: 2px;
+    width: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+ 
+}

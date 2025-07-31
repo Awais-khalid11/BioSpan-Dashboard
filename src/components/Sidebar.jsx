@@ -76,11 +76,11 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="h-[calc(100vh-32px)] w-64 text-white px-5 py-6 flex flex-col rounded-[10px] bg-cover bg-no-repeat bg-center"
           style={{ backgroundImage: `url(${BgNav})` }}
         >
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex justify-center mb-8">
             <ReactSVG src="/assets/icons/Logo.svg" className="h-10 w-auto" />
-            <button className="md:hidden text-white" onClick={onClose}>
+            {/* <button className="md:hidden text-white" onClick={onClose}>
               <FiX size={24} />
-            </button>
+            </button> */}
           </div>
 
           <nav className="flex-1 space-y-2">
@@ -110,7 +110,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             ))}
           </nav>
 
-          <button className="mt-auto bg-red-700 text-white py-2 rounded-md flex items-center justify-center gap-2 hover:bg-red-600">
+          <button className="mt-auto bg-red-800/20 text-red-600 py-2 rounded-md flex items-center justify-center gap-2 hover:bg-red-600/45">
             <ReactSVG src="/assets/icons/logout.svg" className="w-5 h-5" />
             Logout
           </button>

@@ -173,19 +173,19 @@ const SecurityForm = () => {
           filterButtonText=""
           itemsPerPage={5}
         />
-        <div className="flex items-center gap-3 mt-5">
+        <div className="flex flex-wrap items-center gap-3 mt-5">
           <button
             type="button"
-            className="w-[20%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
+            className="w-full sm:w-[19%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="w-[80%] bg-[#072723] flex gap-1.5 items-center justify-center text-white px-6 py-[17px] rounded-[12px] border text-sm font-extrabold"
+            className="w-full sm:w-[79%] bg-[#072723] flex gap-1.5 items-center justify-center text-white px-6 py-[17px] rounded-[12px] border text-sm font-extrabold"
           >
             <TiDownloadOutline />
-            Export as CSV /PDf
+            Export as CSV / PDF
           </button>
         </div>
       </div>

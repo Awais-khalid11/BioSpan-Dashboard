@@ -130,8 +130,8 @@ const AICoach = () => {
 
       {/* Modal */}
       {openModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center">
-          <div className="bg-white w-[700px] rounded-xl p-6 shadow-lg relative">
+        <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center px-4 sm:px-6">
+          <div className="bg-white w-full max-w-[700px] rounded-xl p-4 sm:p-6 shadow-lg relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -140,7 +140,8 @@ const AICoach = () => {
             </button>
             <h2 className="text-xl font-semibold mb-6">Add Prompt</h2>
 
-            <div className="grid grid-cols-2 gap-6">
+            {/* Responsive grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Left Column */}
               <div className="space-y-4">
                 <div>
@@ -150,18 +151,18 @@ const AICoach = () => {
                   <input
                     type="text"
                     defaultValue={selectedRow?.prompt || ""}
-                    placeholder="ifeel tired in the mornings"
+                    placeholder="I feel tired in the mornings"
                     className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 placeholder-gray-400"
                   />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700 mb-2 block">
-                    Ai Response
+                    AI Response
                   </label>
                   <input
                     type="text"
                     defaultValue={selectedRow?.prompt || ""}
-                    placeholder="ifeel tired in the mornings"
+                    placeholder="I feel tired in the mornings"
                     className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-gray-600 placeholder-gray-400"
                   />
                 </div>
@@ -224,14 +225,15 @@ const AICoach = () => {
               </div>
             </div>
 
-            <div className="flex justify-between mt-8">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
               <button
                 onClick={closeModal}
-                className="px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
-              <button className="px-8 py-2.5 rounded-lg w-135 bg-[#1a472a] text-white hover:bg-[#0f3a1a] transition-colors">
+              <button className="w-full sm:w-auto px-8 py-2.5 rounded-lg bg-[#1a472a] text-white hover:bg-[#0f3a1a] transition-colors">
                 Save
               </button>
             </div>

@@ -55,8 +55,8 @@ const UserPermissionForm = () => {
         User Permissions
       </h3>
 
-      <div className="flex gap-5 mb-5">
-        <div className="w-1/2">
+      <div className="flex flex-wrap gap-5 mb-5 md:gap-2">
+        <div className="w-full md:w-[49%]">
           <Selector
             label="Admin Roles"
             options={timeOptions}
@@ -65,7 +65,7 @@ const UserPermissionForm = () => {
           />
         </div>
 
-        <div className="w-1/2">
+        <div className="w-full md:w-[49%]">
           <Selector
             label="Add New Admin"
             options={goalOptions}
@@ -109,17 +109,17 @@ const UserPermissionForm = () => {
             ))}
           </tbody>
         </table>
-        <div className="flex items-center gap-2.5">
+        <div className=" flex flex-wrap  gap-2.5 mt-5">
           <button
             type="button"
-            className="w-[20%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
+            className="w-full md:w-[19%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
           >
             <h4>Cancel</h4>
           </button>
 
           <button
             type="submit"
-            className="w-[80%] bg-[#072723] text-white px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
+            className="w-full md:w-[79%] bg-[#072723] text-white px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
           >
             Save Changes
           </button>

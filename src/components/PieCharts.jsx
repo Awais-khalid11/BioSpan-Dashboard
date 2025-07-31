@@ -13,16 +13,13 @@ const PieCharts = () => {
   const totalValue = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
 
   return (
-    <div
-      className="p-5 rounded-[20px] drop-shadow-[0_0_30px_rgba(0,0,0,0.1)] 
- bg-white font-inter"
-    >
-      <div className="text-[25px] font-bold text-black mb-4 sm:mb-0">
+    <div className="p-4 sm:p-5 rounded-[20px] shadow-sm bg-white">
+      <div className="text-xl sm:text-[25px] font-bold text-black mb-4">
         <h1 className="leading-[1]">Goal Pie Chart</h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center gap-1">
-        <div className="relative" style={{ width: "237px", height: "237px" }}>
+      <div className="flex flex-col lg:flex-row items-center gap-4">
+        <div className="relative" style={{ width: "200px", height: "200px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -43,8 +40,12 @@ const PieCharts = () => {
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="font-bold text-2xl text-[#333]">Total</span>
-            <span className="font-bold text-3xl text-[#333]">100%</span>
+            <span className="font-bold text-xl sm:text-2xl text-[#333]">
+              Total
+            </span>
+            <span className="font-bold text-2xl sm:text-3xl text-[#333]">
+              100%
+            </span>
           </div>
         </div>
 
@@ -56,8 +57,10 @@ const PieCharts = () => {
                 style={{ backgroundColor: entry.color }}
               ></span>
               <div className="flex flex-col">
-                <span className="text-sm text-gray-700">{entry.name}</span>
-                <span className="text-sm text-gray-500">
+                <span className="text-xs sm:text-sm text-gray-700">
+                  {entry.name}
+                </span>
+                <span className="text-xs sm:text-sm text-gray-500">
                   {((entry.value / totalValue) * 100).toFixed(0)}%
                 </span>
               </div>

@@ -27,16 +27,16 @@ const allChartData = {
   ],
   "30 Days": [
     { name: "3 Jul", pv: 200 },
-    { name: "3 Jul", pv: 350 },
-    { name: "3 Jul", pv: 450 },
-    { name: "Day 10", pv: 300 },
-    { name: "Day 13", pv: 500 },
-    { name: "Day 16", pv: 600 },
-    { name: "Day 19", pv: 400 },
-    { name: "Day 22", pv: 700 },
-    { name: "Day 25", pv: 550 },
-    { name: "Day 28", pv: 800 },
-    { name: "Day 30", pv: 700 },
+    { name: "5 Jul", pv: 350 },
+    { name: "7 Jul", pv: 450 },
+    { name: "10 Jul", pv: 300 },
+    { name: "13 Jul", pv: 500 },
+    { name: "16 Jul", pv: 600 },
+    { name: "19 Jul", pv: 400 },
+    { name: "22 Jul", pv: 700 },
+    { name: "25 Jul", pv: 550 },
+    { name: "28 Jul", pv: 800 },
+    { name: "30 Jul", pv: 700 },
   ],
   "7 Days": [
     { name: "Mon", pv: 250 },
@@ -62,28 +62,17 @@ const chartTabLabels = ["12 Months", "30 Days", "7 Days", "24 Hours"];
 
 const LineCharts = () => {
   const [activeChartTab, setActiveChartTab] = useState("30 Days");
-
-  const handleChartTabClick = (tabLabel) => {
-    setActiveChartTab(tabLabel);
-  };
-
   const currentChartData = allChartData[activeChartTab] || [];
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        background: "white",
-        filter: "drop-shadow(0 0px 15px rgba(0,0,0,0.05))",
-      }}
-      className=" outline-none focus:outline-none p-5 rounded-[12px]  bg-white "
-    >
-      <div className="flex flex-wrap gap-3 mb-4 justify-between items-center">
-        <div className="text-[25px] font-bold text-black mb-4 sm:mb-0">
-          <h1 className="leading-[1]">Summary Overview</h1>
-        </div>
+  const handleChartTabClick = (tabLabel) => setActiveChartTab(tabLabel);
 
-        <div className="flex items-center">
+  return (
+    <div className="bg-white rounded-[12px] shadow-sm p-4 sm:p-5">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-4 justify-between items-start sm:items-center">
+        <h1 className="text-xl sm:text-[25px] font-bold text-black leading-[1]">
+          Summary Overview
+        </h1>
+        <div className="flex flex-wrap gap-2 sm:gap-3">
           {chartTabLabels.map((item) => (
             <Button
               key={item}
@@ -95,46 +84,94 @@ const LineCharts = () => {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={215}>
-        <AreaChart
-          width={1070}
-          height={215}
-          data={currentChartData}
-          syncId="anyId"
-          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#A9C87B" stopOpacity={0.6} />
-              <stop offset="100%" stopColor="#B0ED5600" stopOpacity={0} />
-            </linearGradient>
-          </defs>
+      {/* 📱 Mobile - Horizontal Scrollable Chart */}
+      <div className="block md:hidden overflow-x-auto pb-2">
+        <div className="min-w-[700px] h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart
+              data={currentChartData}
+              syncId="anyId"
+              margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+            >
+              <defs>
+                <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#A9C87B" stopOpacity={0.6} />
+                  <stop offset="100%" stopColor="#B0ED5600" stopOpacity={0} />
+                </linearGradient>
+              </defs>
 
-          <CartesianGrid stroke="rgba(0, 0, 0, 0.05)" strokeDasharray="1 1" />
-          <XAxis dataKey="name" stroke="#999" />
-          <YAxis
-            domain={[0, 1000]}
-            ticks={[0, 200, 400, 600, 800, 1000]}
-            stroke="#999"
-          />
-          <Tooltip />
+              <CartesianGrid
+                stroke="rgba(0, 0, 0, 0.05)"
+                strokeDasharray="1 1"
+              />
+              <XAxis dataKey="name" stroke="#999" />
+              <YAxis
+                domain={[0, 1000]}
+                ticks={[0, 200, 400, 600, 800, 1000]}
+                stroke="#999"
+              />
+              <Tooltip />
 
-          <Area
-            type="linear"
-            dataKey="pv"
-            stroke="#B0ED56"
-            strokeWidth={2}
-            fill="url(#greenGradient)"
-            dot={{
-              r: 4,
-              stroke: "#B0ED56",
-              strokeWidth: 2,
-              fill: "#ffffff",
-            }}
-            activeDot={false}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+              <Area
+                type="linear"
+                dataKey="pv"
+                stroke="#B0ED56"
+                strokeWidth={2}
+                fill="url(#greenGradient)"
+                dot={{
+                  r: 4,
+                  stroke: "#B0ED56",
+                  strokeWidth: 2,
+                  fill: "#ffffff",
+                }}
+                activeDot={false}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* 💻 Desktop - Full Width Chart */}
+      <div className="hidden md:block w-full h-[220px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart
+            data={currentChartData}
+            syncId="anyId"
+            margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#A9C87B" stopOpacity={0.6} />
+                <stop offset="100%" stopColor="#B0ED5600" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+
+            <CartesianGrid stroke="rgba(0, 0, 0, 0.05)" strokeDasharray="1 1" />
+            <XAxis dataKey="name" stroke="#999" />
+            <YAxis
+              domain={[0, 1000]}
+              ticks={[0, 200, 400, 600, 800, 1000]}
+              stroke="#999"
+            />
+            <Tooltip />
+
+            <Area
+              type="linear"
+              dataKey="pv"
+              stroke="#B0ED56"
+              strokeWidth={2}
+              fill="url(#greenGradient)"
+              dot={{
+                r: 4,
+                stroke: "#B0ED56",
+                strokeWidth: 2,
+                fill: "#ffffff",
+              }}
+              activeDot={false}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

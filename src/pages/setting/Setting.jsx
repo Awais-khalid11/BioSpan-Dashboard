@@ -50,7 +50,7 @@ const Setting = () => {
     <div>
       <h1 className="text-[25px] font-bold text-black leading-[1]">Settings</h1>
 
-      <div className="flex gap-3 items-center my-4">
+      <div className="flex gap-3 items-center my-4 flex-wrap">
         {tabs.map((tab) => (
           <SettingsTabs
             key={tab}

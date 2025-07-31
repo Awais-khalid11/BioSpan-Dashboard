@@ -12,9 +12,9 @@ const ProgressChart = () => {
   const fullCircle = [{ name: "Background", value: 100 }];
 
   return (
-    <div className="rounded-[12px] border border-[rgba(0,0,0,0.1)] py-[15px] px-4">
+    <div className="rounded-[12px] border border-[rgba(0,0,0,0.1)] py-3 px-2 sm:py-[15px] sm:px-4">
       <div className="flex flex-col items-center justify-center">
-        <div className="relative" style={{ width: "200px", height: "200px" }}>
+        <div className="relative" style={{ width: "150px", height: "150px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <defs>
@@ -44,8 +44,8 @@ const ProgressChart = () => {
                 data={fullCircle}
                 cx="50%"
                 cy="50%"
-                innerRadius={91}
-                outerRadius={96}
+                innerRadius={60}
+                outerRadius={65}
                 startAngle={0}
                 endAngle={360}
                 dataKey="value"
@@ -58,8 +58,8 @@ const ProgressChart = () => {
                 data={pieChartData}
                 cx="50%"
                 cy="50%"
-                innerRadius={70}
-                outerRadius={90}
+                innerRadius={45}
+                outerRadius={60}
                 startAngle={90}
                 endAngle={450}
                 dataKey="value"
@@ -74,7 +74,7 @@ const ProgressChart = () => {
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="font-bold text-5xl text-gray-800">
+            <span className="font-bold text-3xl sm:text-4xl text-gray-800">
               {progressValue}%
             </span>
           </div>

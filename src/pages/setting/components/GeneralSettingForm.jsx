@@ -34,14 +34,16 @@ const GeneralSettingForm = () => {
           General Settings
         </h3>
 
-        <div className="flex items-center gap-5 mb-5">
-          <Input
-            label="Platform Name"
-            type="text"
-            value="Sleep"
-            id="supplement-name"
-          />
-          <div className="w-1/2">
+        <div className="flex flex-wrap gap-5 mb-5 md:gap-2">
+          <div className="w-full md:w-[49%]">
+            <Input
+              label="Platform Name"
+              type="text"
+              value="Sleep"
+              id="platform-name"
+            />
+          </div>
+          <div className="w-full md:w-[49%]">
             <Selector
               label="Default Language"
               options={goalOptions}
@@ -51,8 +53,8 @@ const GeneralSettingForm = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-5 mb-5">
-          <div className="w-1/2">
+        <div className="flex flex-wrap gap-5 mb-5 md:gap-2">
+          <div className="w-full md:w-[49%]">
             <Selector
               label="Time Zone"
               options={timeOptions}
@@ -60,38 +62,39 @@ const GeneralSettingForm = () => {
               onChange={setSelectedGoal}
             />
           </div>
-
-          <Input
-            label="Admin Email"
-            type="text"
-            value="adminpanel@gmail.com"
-            id="supplement-name"
-          />
+          <div className="w-full md:w-[49%]">
+            <Input
+              label="Admin Email"
+              type="text"
+              value="adminpanel@gmail.com"
+              id="admin-email"
+            />
+          </div>
         </div>
 
-        <div className="flex items-center gap-5 mb-5">
-          <div className="w-1/2">
+        <div className="flex flex-wrap gap-5 mb-5 md:gap-2">
+          <div className="w-full md:w-[49%]">
             <label>
               <h3 className="text-[#323232] text-[15px] font-semibold">
                 Notifications
               </h3>
             </label>
             <div className="flex mt-3.5 items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
-              <span className="text-sm text-[#252525] opacity-50">
+              <span className="text-sm text-[#252525] opacity-50 mr-4">
                 Select “Active” to show this Notification or “Inactive” to hide
                 it.
               </span>
               <button
                 type="button"
                 onClick={toggleNotification}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                className={`relative inline-flex h-6 w-11  items-center rounded-full transition-colors ${
                   notificationStatus === "Active"
                     ? "bg-green-500"
                     : "bg-gray-300"
                 }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  className={`inline-block h-4 w-4  transform rounded-full bg-white transition-transform ${
                     notificationStatus === "Active"
                       ? "translate-x-6"
                       : "translate-x-1"
@@ -101,14 +104,14 @@ const GeneralSettingForm = () => {
             </div>
           </div>
 
-          <div className="w-1/2">
+          <div className="w-full md:w-[49%]">
             <label>
               <h3 className="text-[#323232] text-[15px] font-semibold">
                 Maintenance Mode
               </h3>
             </label>
             <div className="flex mt-3.5 items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
-              <span className="text-sm text-[#252525] opacity-50">
+              <span className="text-sm text-[#252525] opacity-50 mr-4">
                 Select “Active” to show this Maintenance or “Inactive” to hide
                 it.
               </span>
@@ -132,18 +135,17 @@ const GeneralSettingForm = () => {
             </div>
           </div>
         </div>
-
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-col md:flex-row gap-2.5 w-full">
           <button
             type="button"
-            className="w-[20%] px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
+            className="w-full md:w-[20%] px-6 py-[17px] sm:px-5 sm:py-3 rounded-[12px] border border-[#252525] text-sm font-extrabold"
           >
-            <h4>Cancel</h4>
+            Cancel
           </button>
 
           <button
             type="submit"
-            className="w-[80%] bg-[#072723] text-white px-6 py-[17px] rounded-[12px] border border-[#252525] text-sm font-extrabold"
+            className="w-full md:w-[80%] bg-[#072723] text-white px-6 py-[17px] sm:px-5 sm:py-3 rounded-[12px] border border-[#252525] text-sm font-extrabold"
           >
             Save Changes
           </button>

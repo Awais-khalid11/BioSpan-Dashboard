@@ -185,12 +185,12 @@ const Dashboard = () => {
   const currentCards = allCardsData[activeButton] || [];
 
   return (
-    <div className="">
-      <div className="flex flex-col sm:flex-row justify-between flex-wrap items-start sm:items-center mb-[15px] mt-1.5">
-        <div className="text-[25px] font-bold text-black leading-[1] mb-4 sm:mb-0">
+    <div className="px-2.5 sm:px-4">
+      <div className="flex flex-col sm:flex-row justify-between flex-wrap items-start sm:items-center mb-4 sm:mb-[15px] mt-1.5">
+        <div className="text-xl sm:text-[25px] font-bold text-black leading-[1] mb-4 sm:mb-0">
           <h1>Summary Overview</h1>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3">
           {textData.map((item) => (
             <Button
               key={item}
@@ -202,8 +202,8 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className=" mb-5">
-        <div className="flex  gap-2">
+      <div className="mb-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-3">
           {currentCards.map((card, index) => (
             <Cards
               key={index}
@@ -221,12 +221,12 @@ const Dashboard = () => {
       <div className="mb-5">
         <LineCharts />
       </div>
-      <div className="flex items-center gap-2.5 flex-wrap">
-        <div className="w-[67%]">
+      <div className="flex flex-col lg:flex-row items-center gap-2.5">
+        <div className="w-full lg:w-[67%]">
           <WearableChart />
         </div>
-        <div className="w-[32%]">
-          <PieCharts />{" "}
+        <div className="w-full lg:w-[32%]">
+          <PieCharts />
         </div>
       </div>
     </div>

@@ -8,9 +8,9 @@ import {
   ChevronDown,
 } from "lucide-react";
 import BasicTable from "../components/BasicTable";
-import DropDownButton from "../components/DropDownButton";
 import Avatar from "../../public/assets/images/Avatar.png";
 import { useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 
 const avatars = {
   "Lydia Press": Avatar,
@@ -22,25 +22,24 @@ const avatars = {
 };
 
 const renderWearables = (hasWearables) => {
-  if (hasWearables === "Yes" || hasWearables === true) {
-    return (
-      <div>
-        <div className="inline-flex items-center mr-2.5 bg-green-100 text-green-700 text-xs p-[2px] gap-1">
+  return (
+    <div className="flex items-center gap-2">
+      <div
+        className={`inline-flex items-center p-[2px] text-xs gap-1 rounded-full ${
+          hasWearables === "Yes" || hasWearables === true
+            ? "bg-green-100 text-green-700"
+            : "bg-red-100 text-red-700"
+        }`}
+      >
+        {hasWearables === "Yes" || hasWearables === true ? (
           <Check className="w-3 h-3" />
-        </div>
-        Yes
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <div className="inline-flex items-center bg-red-100 text-red-700 text-xs p-[2px] mr-2.5 gap-1">
+        ) : (
           <X className="w-3 h-3" />
-        </div>
-        No
+        )}
       </div>
-    );
-  }
+      {hasWearables === "Yes" || hasWearables === true ? "Yes" : "No"}
+    </div>
+  );
 };
 
 const renderStatus = (status) => {
@@ -66,7 +65,6 @@ const renderPlans = (plan) => {
     Free: "bg-[#003CA61A] text-[#003CA6]",
     Premium: "bg-[#E1B4001A] text-[#F9C700]",
   };
-
   const icon = plan === "Free" ? "⭐" : "👑";
 
   return (
@@ -111,7 +109,6 @@ const columns = [
     ),
     key: "user",
   },
-
   { label: "BioScore", key: "bioscore" },
   { label: "Devices", key: "devices" },
   { label: "Goals", key: "goals" },
@@ -123,57 +120,77 @@ const columns = [
 
 const BioScore = () => {
   const navigate = useNavigate();
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const dropdownRefs = useRef({});
+
+  // Handle clicks outside dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      Object.values(dropdownRefs.current).forEach((ref) => {
+        if (ref && !ref.contains(event.target)) {
+          setOpenDropdownId(null);
+        }
+      });
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const renderAction = (userId) => {
     const actionOptions = [
       {
-        label: (
-          <button className="cursor-pointer w-full">
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-2">
-                <span>HRV</span>
-              </div>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-            </div>
-          </button>
-        ),
-        value: "view",
+        label: "HRV",
+        value: "hrv",
+        icon: <ChevronRight className="w-4 h-4 text-gray-400" />,
       },
       {
-        label: (
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-2">
-              <span>Sleep Score</span>
-            </div>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-          </div>
-        ),
-        value: "edit",
-      },
-      {
-        label: (
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-2">
-              <span className="">Sleep Score</span>
-            </div>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-          </div>
-        ),
-        value: "delete",
+        label: "Sleep Score",
+        value: "sleep-score",
+        icon: <ChevronRight className="w-4 h-4 text-gray-400" />,
       },
     ];
 
     const handleActionSelect = (option) => {
       console.log("Action selected:", option);
+      setOpenDropdownId(null);
     };
 
     return (
-      <DropDownButton
-        btnText=""
-        btnIcon={<MoreVertical className="h-4 w-4 text-gray-600" />}
-        options={actionOptions}
-        onSelect={handleActionSelect}
-      />
+      <div
+        className="relative"
+        ref={(el) => (dropdownRefs.current[userId] = el)}
+      >
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpenDropdownId(openDropdownId === userId ? null : userId);
+          }}
+          className="p-1 rounded hover:bg-gray-100"
+        >
+          <MoreVertical className="h-4 w-4 text-gray-600" />
+        </button>
+
+        {openDropdownId === userId && (
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+            <ul className="py-1 text-sm text-gray-700">
+              {actionOptions.map((option, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => handleActionSelect(option)}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center justify-between"
+                  >
+                    <span>{option.label}</span>
+                    {option.icon}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     );
   };
 
@@ -188,16 +205,7 @@ const BioScore = () => {
       status: renderStatus("Normal"),
       devices: "Fitbit",
       dates: "July 14",
-
       action: renderAction(1),
-      raw: {
-        user: "Lydia Press hello@hourglassinc.com",
-        goals: "Fat Loss",
-        bioscore: "76.2",
-        wearables: "Yes",
-        plans: "Free",
-        status: "Normal",
-      },
     },
     {
       id: "2",
@@ -206,19 +214,10 @@ const BioScore = () => {
       bioscore: "88.1",
       wearables: renderWearables("No"),
       dates: "July 14",
-
       plans: renderPlans("Premium"),
       status: renderStatus("Normal"),
       action: renderAction(2),
       devices: "Fitbit",
-      raw: {
-        user: "Jonas K jk@hourglassinc.com",
-        goals: "Muscle Gain",
-        bioscore: "88.1",
-        wearables: "No",
-        plans: "Premium",
-        status: "Normal",
-      },
     },
     {
       id: "3",
@@ -226,20 +225,11 @@ const BioScore = () => {
       goals: "Endurance",
       bioscore: "67.9",
       dates: "July 14",
-
       wearables: renderWearables("Yes"),
       plans: renderPlans("Premium"),
       status: renderStatus("Low"),
       action: renderAction(3),
       devices: "Fitbit",
-      raw: {
-        user: "Emily Stone emily@hourglassinc.com",
-        goals: "Endurance",
-        bioscore: "67.9",
-        wearables: "Yes",
-        plans: "Premium",
-        status: "Low",
-      },
     },
     {
       id: "4",
@@ -247,20 +237,11 @@ const BioScore = () => {
       goals: "Endurance",
       bioscore: "67.9",
       dates: "July 14",
-
       wearables: renderWearables("Yes"),
       plans: renderPlans("Premium"),
       status: renderStatus("Low"),
-      action: renderAction(3),
+      action: renderAction(4),
       devices: "Apple Watch",
-      raw: {
-        user: "Emily Stone emily@hourglassinc.com",
-        goals: "Endurance",
-        bioscore: "67.9",
-        wearables: "Yes",
-        plans: "Premium",
-        status: "Low",
-      },
     },
     {
       id: "5",
@@ -268,22 +249,11 @@ const BioScore = () => {
       goals: "Endurance",
       bioscore: "67.9",
       dates: "July 14",
-
       devices: "Apple Watch",
       wearables: renderWearables("Yes"),
       plans: renderPlans("Premium"),
       status: renderStatus("MissingData"),
-
-      action: renderAction(3),
-
-      raw: {
-        user: "Emily Stone emily@hourglassinc.com",
-        goals: "Endurance",
-        bioscore: "67.9",
-        wearables: "Yes",
-        plans: "Premium",
-        status: "MissingData",
-      },
+      action: renderAction(5),
     },
   ];
 
