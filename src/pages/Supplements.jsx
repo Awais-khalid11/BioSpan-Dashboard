@@ -228,7 +228,7 @@ const Supplements = () => {
         itemsPerPage={5}
         customButton={
           <button
-            onClick={() => navigate("/edit-protocol")}
+            onClick={() => navigate("/supplement-modal")}
             className="bg-[#072723] text-[#B0ED56] px-5 py-2.5 rounded-[8px] flex items-center gap-2 cursor-pointer font-medium text-[16px]"
           >
             <Plus className="w-4 h-4" />
