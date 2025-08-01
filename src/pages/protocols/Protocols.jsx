@@ -1,37 +1,12 @@
 import { useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import BasicTable from "../../components/BasicTable";
-import { X } from "lucide-react"; // or wherever your X icon comes from
-import { Plus } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // if not already
-
-// Status rendering
-const renderStatus = (status) => {
-  const statusStyles = {
-    Active: "bg-[#0676471A] text-[#067647] border-[#067647]",
-    Draft: "bg-[#FFAF3F1A] text-[#FFAF3F] border-[#FFAF3F]",
-    Flagged: "bg-[#F900001A] text-[#F90000] border-[#F90000]",
-  };
-
-  return (
-    <span
-      className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
-        statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
-      }`}
-    >
-      {status}
-    </span>
-  );
-};
+import { X, Plus, CheckCircle, XCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Protocols = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
-
-  const handleEdit = (row) => {
-    setSelectedRow(row);
-    setOpenModal(true);
-  };
   const navigate = useNavigate();
 
   const columns = [
@@ -40,11 +15,47 @@ const Protocols = () => {
     { label: "Goals", key: "goals" },
     { label: "Created On", key: "dates" },
     { label: "Status", key: "status" },
-    {
-      label: "Action",
-      key: "action",
-    },
+    { label: "Action", key: "action" },
   ];
+
+  const renderStatus = (status) => {
+    const statusStyles = {
+      Active: {
+        bg: "bg-[#0676471A]",
+        text: "text-[#067647]",
+        border: "border-[#067647]",
+        icon: <CheckCircle className="w-4 h-4" />,
+      },
+      Draft: {
+        bg: "bg-[#FFAF3F1A]",
+        text: "text-[#FFAF3F]",
+        border: "border-[#FFAF3F]",
+        icon: null,
+      },
+      Hidden: {
+        bg: "bg-[#F900001A]",
+        text: "text-[#F90000]",
+        border: "border-[#F90000]",
+        icon: <XCircle className="w-4 h-4" />,
+      },
+    };
+
+    const currentStatus = statusStyles[status] || {
+      bg: "bg-gray-100",
+      text: "text-gray-700",
+      border: "border-gray-200",
+      icon: null,
+    };
+
+    return (
+      <span
+        className={`flex items-center gap-1 text-sm px-3 py-1.5 w-[116px] h-[38px] rounded-[36px] justify-center border ${currentStatus.bg} ${currentStatus.text} ${currentStatus.border}`}
+      >
+        {currentStatus.icon}
+        {status}
+      </span>
+    );
+  };
 
   const data = [
     {
@@ -53,7 +64,7 @@ const Protocols = () => {
       bioscore: "Try magnesium and light.",
       goals: "Fat Loss",
       dates: "2025-07-16",
-      status: renderStatus("Active"),
+      status: "Active",
     },
     {
       id: "2",
@@ -61,7 +72,7 @@ const Protocols = () => {
       bioscore: "Add protein + creatine...",
       goals: "Longevity",
       dates: "2025-07-12",
-      status: renderStatus("Draft"),
+      status: "Active",
     },
     {
       id: "3",
@@ -69,7 +80,7 @@ const Protocols = () => {
       bioscore: "Try cold showers + magnesium",
       goals: "Sleep Opt.",
       dates: "2025-07-10",
-      status: renderStatus("Flagged"),
+      status: "Hidden",
     },
     {
       id: "4",
@@ -77,7 +88,7 @@ const Protocols = () => {
       bioscore: "Add protein + creatine...",
       goals: "Fat Loss",
       dates: "2025-07-16",
-      status: renderStatus("Active"),
+      status: "Active",
     },
     {
       id: "5",
@@ -85,7 +96,7 @@ const Protocols = () => {
       bioscore: "Try magnesium and light...",
       goals: "Longevity",
       dates: "2025-07-12",
-      status: renderStatus("Draft"),
+      status: "Hidden",
     },
     {
       id: "6",
@@ -93,12 +104,13 @@ const Protocols = () => {
       bioscore: "Try cold showers + magnesium",
       goals: "Sleep Opt.",
       dates: "2025-07-10",
-      status: renderStatus("Flagged"),
+      status: "Hidden",
     },
   ];
 
   const tableData = data.map((row) => ({
     ...row,
+    status: renderStatus(row.status),
     action: (
       <button
         onClick={() => navigate("/edit-protocol")}

@@ -7,6 +7,11 @@ import LineCharts from "../components/LineCharts";
 import PieCharts from "../components/PieCharts";
 import WearableChart from "../components/WearableChart";
 
+import Crown from "../../public/assets/icons/crown-cards.svg";
+import Rating from "../../public/assets/icons/Ranking.svg";
+import Flag from "../../public/assets/icons/Flag.svg";
+import Supplements from "../../public/assets/icons/supplements.svg";
+
 const textData = ["All Time", "This Week", "This Month", "This Year"];
 
 const allCardsData = {
@@ -20,7 +25,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Crown,
       users: "Premium Users",
       userNumber: "$5.2M",
       analytics: "+15%",
@@ -28,7 +33,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Rating,
       users: "Avg BioScore",
       userNumber: "250,000",
       analytics: "+22%",
@@ -36,7 +41,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Flag,
       users: "Top Goal",
       userNumber: "250,000",
       analytics: "+22%",
@@ -44,7 +49,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Supplements,
       users: "Top Supplement",
       userNumber: "250,000",
       analytics: "+22%",
@@ -62,7 +67,7 @@ const allCardsData = {
       total: "this year",
     },
     {
-      icon: UserIcon,
+      icon: Crown,
       users: "Premium Users",
       userNumber: "$4.5M",
       analytics: "+10%",
@@ -70,7 +75,7 @@ const allCardsData = {
       total: "this year",
     },
     {
-      icon: UserIcon,
+      icon: Rating,
       users: "Avg BioScore",
       userNumber: "200,000",
       analytics: "+18%",
@@ -78,7 +83,7 @@ const allCardsData = {
       total: "this year",
     },
     {
-      icon: UserIcon,
+      icon: Flag,
       users: "Top Goal",
       userNumber: "250,000",
       analytics: "+22%",
@@ -86,7 +91,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Supplements,
       users: "Top Supplement",
       userNumber: "250,000",
       analytics: "+22%",
@@ -104,7 +109,7 @@ const allCardsData = {
       total: "+38 this week",
     },
     {
-      icon: UserIcon,
+      icon: Crown,
       users: "Premium Users",
       userNumber: "316",
       analytics: "-21%",
@@ -112,20 +117,20 @@ const allCardsData = {
       total: "21% of tota",
     },
     {
-      icon: UserIcon,
+      icon: Rating,
       users: "Avg BioScore",
       userNumber: "78.6",
       analytics: "stable",
       total: "based on last 7 days",
     },
     {
-      icon: UserIcon,
+      icon: Flag,
       users: "Top Goal",
       userNumber: "Fat Loss",
       total: "42% of users",
     },
     {
-      icon: UserIcon,
+      icon: Supplements,
       users: "Top Supplement",
       userNumber: "Magnesium",
       total: "Assigned in 68% protocols",
@@ -141,7 +146,7 @@ const allCardsData = {
       total: "this week",
     },
     {
-      icon: UserIcon,
+      icon: Crown,
       users: "Premium Users",
       userNumber: "$50K",
       analytics: "+15%",
@@ -149,7 +154,7 @@ const allCardsData = {
       total: "this week",
     },
     {
-      icon: UserIcon,
+      icon: Rating,
       users: "Avg BioScore",
       userNumber: "1,500",
       analytics: "+30%",
@@ -157,7 +162,7 @@ const allCardsData = {
       total: "this week",
     },
     {
-      icon: UserIcon,
+      icon: Flag,
       users: "Top Goal",
       userNumber: "250,000",
       analytics: "+22%",
@@ -165,7 +170,7 @@ const allCardsData = {
       total: "since all time",
     },
     {
-      icon: UserIcon,
+      icon: Supplements,
       users: "Top Supplement",
       userNumber: "250,000",
       analytics: "+22%",

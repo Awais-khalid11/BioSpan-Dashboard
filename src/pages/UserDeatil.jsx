@@ -6,12 +6,15 @@ import Selector from "../components/Selector";
 import Cards from "../components/Cards";
 import Aim from "../../public/assets/icons/Aim.svg";
 import Avatar from "../../public/assets/images/Avatar.png";
+import Current from "../../public/assets/icons/lifline.svg";
+import Watch from "../../public/assets/icons/Watch.svg";
+import User from "../../public/assets/icons/User.svg";
 
 const CardsData = [
   { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
-  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
-  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
-  { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Current, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Watch, userNumber: "Goal", total: "Fat Loss" },
+  { icon: User, userNumber: "Goal", total: "Fat Loss" },
 ];
 
 const UserDetail = () => {

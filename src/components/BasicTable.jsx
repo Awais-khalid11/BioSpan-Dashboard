@@ -214,50 +214,62 @@ const BasicTable = ({
         )}
 
         {showPagination && totalPages > 1 && (
-          <div className="flex flex-col md:flex-row items-center justify-between mt-4 px-4 py-3 border-t border-[#0000001A] gap-3">
-            <div className="flex items-center gap-1 flex-wrap justify-center">
-              Page
-              {getPageNumbers().map((page, index) => (
-                <button
-                  key={index}
-                  onClick={() => typeof page === "number" && goToPage(page)}
-                  disabled={page === "..."}
-                  className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-                    page === currentPage
-                      ? "bg-blue-600 text-white"
-                      : page === "..."
-                      ? "text-gray-400 cursor-default"
-                      : "text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  {page}
-                </button>
-              ))}
+          <div className="flex items-center justify-between mt-4 px-4 py-3 border-t border-[#0000001A]">
+            {/* Page info text */}
+            <div className="text-sm text-gray-600">
+              Page {currentPage} of {totalPages}
             </div>
 
+            {/* Navigation buttons */}
             <div className="flex items-center gap-2">
               <button
                 onClick={goToPrevious}
                 disabled={currentPage === 1}
-                className={`flex items-center gap-1 bg-[white] px-3 py-1.5 text-sm rounded-md transition-colors ${
+                className={`flex items-center gap-1 px-3 py-1.5 text-sm rounded-md border transition-colors ${
                   currentPage === 1
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-[#252525]  hover:bg-gray-100"
+                    ? "text-gray-400 border-gray-200 cursor-not-allowed bg-gray-50"
+                    : "text-gray-700 border-gray-300 hover:bg-gray-50 bg-white"
                 }`}
               >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
                 Previous
               </button>
 
               <button
                 onClick={goToNext}
                 disabled={currentPage === totalPages}
-                className={`flex items-center gap-1 px-3 py-1.5 text-sm rounded-md transition-colors ${
+                className={`flex items-center gap-1 px-3 py-1.5 text-sm rounded-md border transition-colors ${
                   currentPage === totalPages
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "text-gray-400 border-gray-200 cursor-not-allowed bg-gray-50"
+                    : "text-gray-700 border-gray-300 hover:bg-gray-50 bg-white"
                 }`}
               >
                 Next
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </button>
             </div>
           </div>
