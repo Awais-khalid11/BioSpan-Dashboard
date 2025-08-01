@@ -12,9 +12,9 @@ import User from "../../public/assets/icons/User.svg";
 
 const CardsData = [
   { icon: Aim, userNumber: "Goal", total: "Fat Loss" },
-  { icon: Current, userNumber: "Goal", total: "Fat Loss" },
-  { icon: Watch, userNumber: "Goal", total: "Fat Loss" },
-  { icon: User, userNumber: "Goal", total: "Fat Loss" },
+  { icon: Current, userNumber: "Current BioScore", total: "76.2" },
+  { icon: Watch, userNumber: "Wearable", total: "Yes" },
+  { icon: User, userNumber: "Joined", total: "May 2025" },
 ];
 
 const UserDetail = () => {

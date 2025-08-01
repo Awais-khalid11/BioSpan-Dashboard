@@ -9,13 +9,13 @@ const tabsData = [
   },
   {
     icon: "../../public/assets/icons/apple.svg",
-    title: "Apple Watch",
-    percentage: "38%",
+    title: "Fitbit",
+    percentage: "19%",
   },
   {
     icon: "../../public/assets/icons/apple.svg",
-    title: "Apple Watch",
-    percentage: "38%",
+    title: "Oura Ring",
+    percentage: "15%",
   },
 ];
 
