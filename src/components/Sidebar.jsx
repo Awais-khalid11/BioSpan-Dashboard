@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 import BgNav from "../../public/assets/images/bgnav.png";
 import { ReactSVG } from "react-svg";
-import { FiX } from "react-icons/fi";
-import { useState } from "react";
 
 const Sidebar = ({ isOpen, onClose }) => {
   const navItems = [
@@ -57,66 +55,67 @@ const Sidebar = ({ isOpen, onClose }) => {
     },
   ];
 
+  const logoutButton = (
+    <NavLink
+      to="/logout"
+      className="flex items-center gap-3 px-4 py-2 rounded-lg transition border border-[#FFFFFF33] hover:bg-white/10 bg-red-800/20 text-red-600"
+      onClick={onClose}
+    >
+      <ReactSVG src="/assets/icons/logout.svg" className="w-5 h-5" />
+      <span>Logout</span>
+    </NavLink>
+  );
+
   return (
-    <>
-      {/* Mobile overlay */}
-      {/* {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={onClose}
-        />
-      )} */}
-
+    <div
+      className={`bg-gray-50 pl-2.5 py-2.5 fixed md:relative z-50 transition-all duration-300 ease-in-out transform ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0`}
+    >
       <div
-        className={`bg-gray-50 pl-2.5 py-2.5 fixed md:relative z-50 transition-all duration-300 ease-in-out transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
+        className="h-[calc(100vh-32px)] w-64 text-white px-5 py-6 flex flex-col rounded-[10px] bg-cover bg-no-repeat bg-center"
+        style={{ backgroundImage: `url(${BgNav})` }}
       >
-        <div
-          className="h-[calc(100vh-32px)] w-64 text-white px-5 py-6 flex flex-col rounded-[10px] bg-cover bg-no-repeat bg-center"
-          style={{ backgroundImage: `url(${BgNav})` }}
-        >
-          <div className="flex justify-center mb-8">
-            <ReactSVG src="/assets/icons/Logo.svg" className="h-10 w-auto" />
-            {/* <button className="md:hidden text-white" onClick={onClose}>
-              <FiX size={24} />
-            </button> */}
-          </div>
-
-          <nav className="flex-1 space-y-2">
-            {navItems.map(({ id, name, iconA, iconB, link }) => (
-              <NavLink
-                key={id}
-                to={link}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-lg transition border border-[#FFFFFF33] ${
-                    isActive
-                      ? "bg-lime-400 text-black font-semibold"
-                      : "hover:bg-white/10"
-                  }`
-                }
-                onClick={onClose}
-              >
-                {({ isActive }) => (
-                  <>
-                    <ReactSVG
-                      src={isActive ? iconA : iconB}
-                      className="w-5 h-5"
-                    />
-                    <span>{name}</span>
-                  </>
-                )}
-              </NavLink>
-            ))}
-          </nav>
-
-          <button className="mt-auto flex items-center gap-3 px-4 py-2 rounded-lg transition border border-[#FFFFFF33] hover:bg-white/10 bg-red-800/20 text-red-600">
-            <ReactSVG src="/assets/icons/logout.svg" className="w-5 h-5" />
-            <span>Logout</span>
-          </button>
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <ReactSVG src="/assets/icons/Logo.svg" className="h-10 w-auto" />
         </div>
+
+        {/* Nav Items */}
+        <nav className="space-y-2">
+          {navItems.map(({ id, name, iconA, iconB, link }) => (
+            <NavLink
+              key={id}
+              to={link}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg transition border border-[#FFFFFF33] ${
+                  isActive
+                    ? "bg-lime-400 text-black font-semibold"
+                    : "hover:bg-white/10"
+                }`
+              }
+              onClick={onClose}
+            >
+              {({ isActive }) => (
+                <>
+                  <ReactSVG
+                    src={isActive ? iconA : iconB}
+                    className="w-5 h-5"
+                  />
+                  <span>{name}</span>
+                </>
+              )}
+            </NavLink>
+          ))}
+
+          {/* ✅ Show Logout here on mobile only */}
+          <div className="block md:hidden">{logoutButton}</div>
+        </nav>
+
+        {/* ✅ Show Logout at bottom only on desktop */}
+        <div className="hidden md:block mt-auto">{logoutButton}</div>
       </div>
-    </>
+    </div>
   );
 };
 

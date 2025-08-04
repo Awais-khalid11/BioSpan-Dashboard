@@ -43,7 +43,7 @@ const Navbar = ({ onMenuClick, isSidebarOpen }) => {
         <img
           src="https://i.pravatar.cc/40"
           alt="User"
-          className="w-10 h-10 rounded-full border border-gray-300"
+          className="w-12.5 h-12.5 rounded-full p-[4px] border-2 border-[#E6EBF2]"
         />
 
         {/* Hamburger - visible only on mobile */}
