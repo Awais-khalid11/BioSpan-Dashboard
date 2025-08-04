@@ -12,7 +12,8 @@ const Toggleinput = () => {
       <label className="text-[#323232] text-[15px] leading-[1] tracking-[1.6%] font-semibold">
         <h3>Use Random Data</h3>
       </label>
-      <div className="flex mt-3.5 items-center justify-between py-2 px-4 border border-[#2525251A] rounded-lg">
+      <div className="flex flex-col md:flex-row mt-3.5 items-start md:items-center justify-between gap-4 py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+        {" "}
         <span className="text-sm text-[#252525] placeholder:opacity-50">
           Select "Active" to Collect Random Data or "Inactive" to Disabled it.
         </span>

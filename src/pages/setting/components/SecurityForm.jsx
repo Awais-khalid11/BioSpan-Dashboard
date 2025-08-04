@@ -138,7 +138,8 @@ const SecurityForm = () => {
             <h3 className="text-lg font-medium text-gray-900 mb-3">
               Two-Factor Authentication
             </h3>
-            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg bg-gray-50">
+            <div className="flex flex-col md:flex-row mt-3.5 items-start md:items-center justify-between gap-4 py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+              {" "}
               <span className="text-sm text-gray-600">
                 Select "Active" to Activate Two-Factor Authentication or
                 "Inactive" to Disabled it.

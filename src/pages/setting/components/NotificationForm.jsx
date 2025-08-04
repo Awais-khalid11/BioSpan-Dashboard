@@ -195,7 +195,8 @@ const NotificationForm = () => {
               <label className="block text-[15px] font-semibold text-[#323232] mb-2">
                 {label}
               </label>
-              <div className="flex items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+              <div className="flex flex-col md:flex-row mt-3.5 items-start md:items-center justify-between gap-4 py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+                {" "}
                 <span className="text-sm text-[#252525] opacity-50">
                   {description}
                 </span>

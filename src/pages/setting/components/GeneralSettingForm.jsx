@@ -79,7 +79,8 @@ const GeneralSettingForm = () => {
                 Notifications
               </h3>
             </label>
-            <div className="flex mt-3.5 items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+            <div className="flex flex-col md:flex-row mt-3.5 items-start md:items-center justify-between gap-4 py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+              {" "}
               <span className="text-sm text-[#252525] opacity-50 mr-4">
                 Select “Active” to show this Notification or “Inactive” to hide
                 it.
@@ -110,7 +111,8 @@ const GeneralSettingForm = () => {
                 Maintenance Mode
               </h3>
             </label>
-            <div className="flex mt-3.5 items-center justify-between py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+            <div className="flex flex-col md:flex-row mt-3.5 items-start md:items-center justify-between gap-4 py-4 px-5 rounded-[12px] border border-[#2525251A] bg-white">
+              {" "}
               <span className="text-sm text-[#252525] opacity-50 mr-4">
                 Select “Active” to show this Maintenance or “Inactive” to hide
                 it.

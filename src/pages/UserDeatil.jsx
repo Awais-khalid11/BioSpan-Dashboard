@@ -80,15 +80,13 @@ const UserDetail = () => {
         {/* User Summary */}
         <div className="bg-white py-5 px-4 border border-[#0000001A] rounded-[12px]">
           <div className="bg-white rounded-[20px] p-5 mb-6 border border-[#25252512]">
-            {/* Heading outside grid to align properly */}
-            <h2 className="text-[20px] text-black font-bold mb-6">
-              User Summary
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-              {/* Left Column */}
-              <div className="flex flex-col justify-between h-full">
-                <div className="flex items-start gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left side */}
+              <div>
+                <h2 className="text-[20px] text-black font-bold mb-4">
+                  User Summary
+                </h2>
+                <div className="flex items-start gap-4 mb-4">
                   <img
                     src={Avatar}
                     alt="Lydia Press"
@@ -102,7 +100,7 @@ const UserDetail = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-700">User Rank</span>
                   <div className="flex gap-1">
                     {[...Array(4)].map((_, i) => (
@@ -116,9 +114,9 @@ const UserDetail = () => {
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div className="bg-[#F7F7F7] rounded-2xl px-4 py-3 flex flex-col justify-between h-full space-y-3">
-                <div className="flex items-center justify-between border-b border-[#0000001A] pb-2">
+              {/* Right side */}
+              <div className="space-y-1 bg-[#F7F7F7] rounded-2xl px-2.5">
+                <div className="flex items-center justify-between py-2.5 border-b border-[#0000001A]">
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-gray-600" />
                     <span className="text-sm text-gray-700">Plan</span>
@@ -128,7 +126,7 @@ const UserDetail = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between border-b border-[#0000001A] pb-2">
+                <div className="flex items-center justify-between py-2.5 border-b border-[#0000001A]">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm text-gray-700">Status</span>
@@ -138,7 +136,7 @@ const UserDetail = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
+                <div className="flex items-center justify-between py-2.5">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-600" />
                     <span className="text-sm text-gray-700">Last Active</span>
@@ -150,7 +148,6 @@ const UserDetail = () => {
               </div>
             </div>
 
-            {/* Table below the summary */}
             <MiniTable />
           </div>
 
