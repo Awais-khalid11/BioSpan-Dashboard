@@ -10,14 +10,13 @@ const Protocols = () => {
   const navigate = useNavigate();
 
   const columns = [
-    { label: "Prompt/Trigger", key: "prompt" },
-    { label: "AI Response", key: "bioscore" },
-    { label: "Goals", key: "goals" },
-    { label: "Created On", key: "dates" },
-    { label: "Status", key: "status" },
-    { label: "Action", key: "action" },
+    { label: "Prompt/Trigger", key: "prompt", align: "text-left" },
+    { label: "AI Response", key: "bioscore", align: "text-left" },
+    { label: "Goals", key: "goals", align: "text-center" },
+    { label: "Created On", key: "dates", align: "text-center" },
+    { label: "Status", key: "status", align: "text-center" },
+    { label: "Action", key: "action", align: "text-center" },
   ];
-
   const renderStatus = (status) => {
     const statusStyles = {
       Active: {
@@ -49,7 +48,7 @@ const Protocols = () => {
 
     return (
       <span
-        className={`flex items-center gap-1 text-sm px-3 py-1.5 w-[116px] h-[38px] rounded-[36px] justify-center border ${currentStatus.bg} ${currentStatus.text} ${currentStatus.border}`}
+        className={`flex items-center gap-1 text-sm px-3 py-1.5 w-[116px] h-[38px] rounded-[36px] justify-center border ${currentStatus.bg} ${currentStatus.text} ${currentStatus.border} mx-auto`}
       >
         {currentStatus.icon}
         {status}

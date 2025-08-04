@@ -12,12 +12,36 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const columns = [
-  { label: "Supplement Name", key: "supplements" },
-  { label: "Category", key: "category" },
-  { label: "Assigned Goal", key: "goal" },
-  { label: "Description", key: "description" },
-  { label: "Status", key: "status" },
-  { label: "Action", key: "action" },
+  {
+    label: "Supplement Name",
+    key: "supplements",
+    align: "text-left",
+  },
+  {
+    label: "Category",
+    key: "category",
+    align: "text-left",
+  },
+  {
+    label: "Assigned Goal",
+    key: "goal",
+    align: "text-left",
+  },
+  {
+    label: "Description",
+    key: "description",
+    align: "text-left",
+  },
+  {
+    label: "Status",
+    key: "status",
+    align: "text-center",
+  },
+  {
+    label: "Action",
+    key: "action",
+    align: "text-center",
+  },
 ];
 
 const CustomDropdown = ({ id, currentStatus, onToggle }) => {
@@ -181,21 +205,25 @@ const Supplements = () => {
 
   const formatStatus = (status) => {
     const isActive = status === "Active";
+
     return (
-      <span
-        className={`flex items-center gap-1 text-sm px-3 py-1.5 w-[116px] h-[38px] rounded-[36px] justify-center border ${
-          isActive
-            ? "bg-[#0676471A] text-[#067647] border-[#067647]"
-            : "bg-[#F044381A] text-[#F04438] border-[#F04438]"
-        }`}
-      >
-        {isActive ? (
-          <CheckCircle className="w-4 h-4" />
-        ) : (
-          <XCircle className="w-4 h-4" />
-        )}
-        {status}
-      </span>
+      <div className="flex items-center justify-center w-full h-full">
+        <span
+          className={`flex items-center gap-1 text-sm px-3 py-1.5 rounded-[36px] border w-[116px] h-[38px] justify-center ${
+            isActive
+              ? "bg-[#0676471A] text-[#067647] border-[#067647]"
+              : "bg-[#F044381A] text-[#F04438] border-[#F04438]"
+          }`}
+        >
+          {isActive ? (
+            <CheckCircle className="w-4 h-4" />
+          ) : (
+            <XCircle className="w-4 h-4" />
+          )}
+          {status}
+        </span>
+          
+      </div>
     );
   };
 

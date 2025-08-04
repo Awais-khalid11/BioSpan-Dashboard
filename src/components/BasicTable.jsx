@@ -163,12 +163,12 @@ const BasicTable = ({
         <div className="min-w-[600px]">
           <table className="w-full">
             <thead className="bg-[#F2F8EB] py-3.5 px-2.5 rounded-b-4xl border border-[#0000001A]">
-              <tr className="rounded-2xl border border-[#0000001A]">
+              <tr className="rounded-2xl border border-[#0000001A] ">
                 {columns.map((col, idx) => (
                   <th
                     key={idx}
                     className={`
-            p-3 text-left bold text-[#072723] text-[12px] leading-[1.5] whitespace-nowrap
+            p-3  bold text-[#072723] text-[12px]  leading-[1.5] whitespace-nowrap
             ${
               idx === 0 ? "min-w-[200px] pr-8" : ""
             }  // First column wider with more right padding
@@ -177,7 +177,7 @@ const BasicTable = ({
             }      // Second column minimum width
           `}
                   >
-                    <h3>{col.label}</h3>
+                    <h3 className={col.align}>{col.label}</h3>
                   </th>
                 ))}
               </tr>
@@ -197,7 +197,7 @@ const BasicTable = ({
               ${colIdx === 1 ? "min-w-[150px]" : ""}       // Second column cell
             `}
                     >
-                      <h5>{row[col.key]}</h5>
+                      <h5 className={col.align}>{row[col.key]}</h5>
                     </td>
                   ))}
                 </tr>

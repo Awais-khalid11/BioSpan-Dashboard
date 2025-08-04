@@ -1,7 +1,6 @@
-// Input.js
 import React from "react";
 
-const Input = ({ label, type, value, id, placeholder }) => {
+const Input = ({ label, type, value, id, placeholder, onChange }) => {
   const isDate = type === "date";
 
   return (
@@ -27,7 +26,8 @@ const Input = ({ label, type, value, id, placeholder }) => {
         <input
           type={type}
           id={id}
-          defaultValue={value}
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
           className={`w-full text-sm text-gray-800 placeholder-gray-400 py-3 md:py-4 ${
             isDate ? "pl-10 md:pl-12" : "px-3 md:px-4"

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Selector from "../../../components/Selector";
 
+import { IoMdAdd } from "react-icons/io";
+
 const modules = [
   "Users",
   "Supplements",
@@ -71,6 +73,7 @@ const UserPermissionForm = () => {
             options={goalOptions}
             value={selectedGoal}
             onChange={setSelectedGoal}
+            icon={IoMdAdd}
           />
         </div>
       </div>

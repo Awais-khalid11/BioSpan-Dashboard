@@ -50,13 +50,16 @@ const renderStatus = (status) => {
   };
 
   return (
-    <span
-      className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
-        statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
-      }`}
-    >
-      {status}
-    </span>
+    <div className="flex justify-center">
+      <span
+        className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
+          statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
+        }`}
+      >
+        {status}
+      </span>
+        
+    </div>
   );
 };
 
@@ -108,14 +111,43 @@ const columns = [
       </div>
     ),
     key: "user",
+    align: "text-left", // First column aligned left
   },
-  { label: "BioScore", key: "bioscore" },
-  { label: "Devices", key: "devices" },
-  { label: "Goals", key: "goals" },
-  { label: "Dates", key: "dates" },
-  { label: "Plans", key: "plans" },
-  { label: "Status", key: "status" },
-  { label: "Action", key: "action" },
+  {
+    label: "BioScore",
+    key: "bioscore",
+    align: "text-center",
+  },
+  {
+    label: "Devices",
+    key: "devices",
+    align: "text-center",
+  },
+  {
+    label: "Goals",
+    key: "goals",
+    align: "text-center",
+  },
+  {
+    label: "Dates",
+    key: "dates",
+    align: "text-center",
+  },
+  {
+    label: "Plans",
+    key: "plans",
+    align: "text-center",
+  },
+  {
+    label: "Status",
+    key: "status",
+    align: "text-center",
+  },
+  {
+    label: "Action",
+    key: "action",
+    align: "text-center",
+  },
 ];
 
 const BioScore = () => {
@@ -149,6 +181,11 @@ const BioScore = () => {
       {
         label: "Sleep Score",
         value: "sleep-score",
+        icon: <ChevronRight className="w-4 h-4 text-gray-400" />,
+      },
+      {
+        label: "Score Info",
+        value: "score-info",
         icon: <ChevronRight className="w-4 h-4 text-gray-400" />,
       },
     ];

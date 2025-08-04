@@ -70,7 +70,7 @@ const LineCharts = () => {
     <div className="bg-white rounded-[12px] shadow-sm p-4 sm:p-5">
       <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-4 justify-between items-start sm:items-center">
         <h1 className="text-xl sm:text-[25px] font-bold text-black leading-[1]">
-          Summary Overview
+          User Grow Chart
         </h1>
         <div className="flex flex-wrap gap-2 sm:gap-3">
           {chartTabLabels.map((item) => (

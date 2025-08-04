@@ -5,12 +5,31 @@ import Selector from "../../../components/Selector";
 const EditProtocol = () => {
   const [selectedGoal, setSelectedGoal] = useState("fat_loss");
   const [status, setStatus] = useState("Active");
+  const [protocolName, setProtocolName] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
+  const [createdDate, setCreatedDate] = useState("");
 
   const goalOptions = [
-    { label: "Sleep", value: "fat_loss" },
-    { label: "Muscle Gain", value: "muscle_gain" },
-    { label: "Longevity", value: "longevity" },
-    { label: "Better Sleep", value: "sleep" },
+    {
+      label: "Sleep",
+      value: "fat_loss",
+      hint: "Improve your sleep quality for better recovery.",
+    },
+    {
+      label: "Muscle Gain",
+      value: "muscle_gain",
+      hint: "Build muscle mass with optimized workouts and diet.",
+    },
+    {
+      label: "Longevity",
+      value: "longevity",
+      hint: "Focus on long-term health and cellular vitality.",
+    },
+    {
+      label: "Better Sleep",
+      value: "sleep",
+      hint: "Get deeper, uninterrupted sleep cycles.",
+    },
   ];
 
   const toggleStatus = () => {
@@ -18,7 +37,7 @@ const EditProtocol = () => {
   };
 
   return (
-    <div className="p-4 md:p-6">
+    <div className="">
       <h1 className="text-xl md:text-2xl font-bold text-black mb-4">
         Edit Protocol
       </h1>
@@ -30,13 +49,15 @@ const EditProtocol = () => {
           </h3>
 
           {/* Protocol Name and Assigned Goals */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 items-center mb-4 md:mb-5">
             <div className="w-full md:w-1/2">
               <Input
                 label="Protocol Name"
                 type="text"
-                value="Sleep"
+                value={protocolName}
+                onChange={(e) => setProtocolName(e.target.value)}
                 id="supplement-name"
+                placeholder="Enter protocol name"
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -55,8 +76,10 @@ const EditProtocol = () => {
               <Input
                 label="Short Description:"
                 type="text"
-                value="A comprehensive nightly protocol specifically designed to enhance deep sleep quality, promote faster muscle recovery, and support overall nighttime regeneration through targeted supplementation and recovery strategies."
+                value={shortDescription}
+                onChange={(e) => setShortDescription(e.target.value)}
                 id="short-description"
+                placeholder="Enter a short description"
               />
             </div>
 
@@ -90,24 +113,26 @@ const EditProtocol = () => {
           </div>
 
           {/* Created Date and Status */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-4 md:mb-5 items-center">
             <div className="w-full md:w-1/2">
               <Input
                 label="Created Date"
                 type="date"
-                value="2025-05-02"
+                value={createdDate}
+                onChange={(e) => setCreatedDate(e.target.value)}
                 id="created-date"
-              />
+                placeholder="Select date"
+              />{" "}
             </div>
 
             <div className="w-full md:w-1/2">
               <label>
-                <h3 className="text-gray-800 text-sm md:text-base font-semibold">
+                <h3 className="text-gray-800 text-sm md:text-base font-semibold mb-1">
                   Status:
                 </h3>
               </label>
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mt-2 p-3 md:p-4 rounded-lg border border-gray-200 bg-white">
-                <span className="text-xs md:text-sm text-gray-600">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mt-2  py-3.5 px-3  rounded-lg md:rounded-xl border border-gray-300 bg-white">
+                <span className="text-xs md:text-sm text-gray-600 leading-[1]">
                   Select "Active" to show this protocol or "Inactive" to hide
                   it.
                 </span>
@@ -115,7 +140,7 @@ const EditProtocol = () => {
                 <button
                   type="button"
                   onClick={toggleStatus}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors outline-none ring-offset-2 focus:ring-2 focus:ring-blue-500 ${
                     status === "Active" ? "bg-green-500" : "bg-gray-300"
                   }`}
                 >

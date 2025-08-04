@@ -13,16 +13,18 @@ const renderStatus = (status) => {
   };
 
   return (
-    <span
-      className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
-        statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
-      }`}
-    >
-      {status}
-    </span>
+    <div className="flex justify-center">
+      <span
+        className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
+          statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
+        }`}
+      >
+        {status}
+      </span>
+        
+    </div>
   );
 };
-
 const AICoach = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -40,14 +42,35 @@ const AICoach = () => {
   };
 
   const columns = [
-    { label: "Prompt/Trigger", key: "prompt" },
-    { label: "AI Response", key: "bioscore" },
-    { label: "Goals", key: "goals" },
-    { label: "Created On", key: "dates" },
-    { label: "Status", key: "status" },
+    {
+      label: "Prompt/Trigger",
+      key: "prompt",
+      align: "text-left",
+    },
+    {
+      label: "AI Response",
+      key: "bioscore",
+      align: "text-left",
+    },
+    {
+      label: "Goals",
+      key: "goals",
+      align: "text-center",
+    },
+    {
+      label: "Created On",
+      key: "dates",
+      align: "text-center",
+    },
+    {
+      label: "Status",
+      key: "status",
+      align: "text-center",
+    },
     {
       label: "Action",
       key: "action",
+      align: "text-center",
     },
   ];
 

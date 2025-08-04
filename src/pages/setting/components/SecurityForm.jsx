@@ -46,9 +46,9 @@ const SecurityForm = () => {
   ];
 
   const newAdminOptions = [
-    { label: "newmember@gmail.com", value: "newmember@gmail.com" },
-    { label: "admin@company.com", value: "admin@company.com" },
-    { label: "manager@company.com", value: "manager@company.com" },
+    { label: "10m", value: "ten" },
+    { label: "20m", value: "twenty" },
+    { label: "30m", value: "thirty" },
   ];
 
   const activityLogs = [
@@ -87,11 +87,11 @@ const SecurityForm = () => {
   ];
 
   const columns = [
-    { key: "promptTrigger", label: "Prompt/Trigger", sortable: true },
-    { key: "aiResponse", label: "AI Response", sortable: true },
-    { key: "goals", label: "Goals", sortable: false },
-    { key: "createdOn", label: "Created On", sortable: true },
-    { key: "status", label: "Status", sortable: true },
+    { key: "promptTrigger", label: "Prompt/Trigger", align: "text-left" },
+    { key: "aiResponse", label: "AI Response", align: "text-center" },
+    { key: "goals", label: "Goals", align: "text-center" },
+    { key: "createdOn", label: "Created On", align: "text-center" },
+    { key: "status", label: "Status", align: "text-center" },
   ];
 
   const toggleTwoFactor = () => {
@@ -117,7 +117,7 @@ const SecurityForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <Selector
-                label="Admin Roles"
+                label="Change Admin Passwords"
                 options={adminRoleOptions}
                 value={selectedAdminRole}
                 onChange={setSelectedAdminRole}
@@ -126,7 +126,7 @@ const SecurityForm = () => {
 
             <div>
               <Selector
-                label="Add New Admin"
+                label="Session Timeout Duration"
                 options={newAdminOptions}
                 value={selectedNewAdmin}
                 onChange={setSelectedNewAdmin}

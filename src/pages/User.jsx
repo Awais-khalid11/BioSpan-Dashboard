@@ -46,18 +46,21 @@ const renderWearables = (hasWearables) => {
 const renderStatus = (status) => {
   const statusStyles = {
     Active: "bg-[#0676471A] text-[#067647] border-[#067647]",
-    Blocked: "bg-[#9898981A] text-[#989898] border-[#989898]",
-    Idle: "bg-[#FFAF3F1A] text-[#FFAF3F] border-[#FFAF3F]",
+    Draft: "bg-[#FFAF3F1A] text-[#FFAF3F] border-[#FFAF3F]",
+    Blocked: "bg-[#F900001A] text-[#F90000] border-[#F90000]",
   };
 
   return (
-    <span
-      className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
-        statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
-      }`}
-    >
-      {status}
-    </span>
+    <div className="flex justify-center">
+      <span
+        className={`text-sm px-3 py-1.5 flex items-center w-[116px] h-[38px] rounded-[36px] justify-center border ${
+          statusStyles[status] || "bg-gray-100 text-gray-700 border-gray-200"
+        }`}
+      >
+        {status}
+      </span>
+        
+    </div>
   );
 };
 
@@ -155,22 +158,46 @@ const CustomDropdown = ({ userId }) => {
 
 const columns = [
   {
+    key: "user",
     label: (
       <div className="flex items-center gap-3">
         <input type="checkbox" className="form-checkbox text-blue-500" />
         <span>User</span>
       </div>
     ),
-    key: "user",
+    align: "text-left",
   },
-  { label: "Goals", key: "goals" },
-  { label: "BioScore", key: "bioscore" },
-  { label: "Wearables", key: "wearables" },
-  { label: "Plans", key: "plans" },
-  { label: "Status", key: "status" },
-  { label: "Action", key: "action" },
+  {
+    key: "goals",
+    label: "Goals",
+    align: "text-center",
+  },
+  {
+    key: "bioscore",
+    label: "BioScore",
+    align: "text-center",
+  },
+  {
+    key: "wearables",
+    label: "Wearables",
+    align: "text-center",
+  },
+  {
+    key: "plans",
+    label: "Plans",
+    align: "text-center",
+  },
+  {
+    key: "status",
+    label: "Status",
+    align: "text-center",
+  },
+  {
+    key: "action",
+    label: "Action",
+    align: "text-center",
+  },
 ];
-
 const User = () => {
   const data = [
     {
