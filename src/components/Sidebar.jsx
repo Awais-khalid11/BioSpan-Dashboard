@@ -68,12 +68,14 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`bg-gray-50 pl-2.5 py-2.5 fixed md:relative z-50 transition-all duration-300 ease-in-out transform ${
+      className={`fixed md:relative z-50 transition-all duration-300 ease-in-out transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } md:translate-x-0`}
+      } md:translate-x-0 bg-gray-50 ${
+        isOpen ? "pl-0 pt-0" : "pl-0 pt-0"
+      } md:pl-2.5 md:pt-2.5`}
     >
       <div
-        className="h-[calc(100vh-32px)] w-64 text-white px-5 py-6 flex flex-col rounded-[10px] bg-cover bg-no-repeat bg-center"
+        className="h-screen md:h-[calc(100vh-32px)] w-64 text-white px-5 py-6 flex flex-col rounded-[10px] bg-cover bg-no-repeat bg-center"
         style={{ backgroundImage: `url(${BgNav})` }}
       >
         {/* Logo */}
